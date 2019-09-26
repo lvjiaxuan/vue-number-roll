@@ -1,29 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <number-roll ref="number-roll" number="923" duration="1000" min-length="4" rollHeight="50px"/>
+    <br>
+    <button @click="go">test</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import NumberRoll from './components/NumberRoll.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    NumberRoll,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+
+  go() {
+    (<NumberRoll>this.$refs['number-roll']).startRoll();
+  }
+}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
