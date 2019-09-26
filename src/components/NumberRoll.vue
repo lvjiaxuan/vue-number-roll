@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 
 @Component
 export default class NumberRoll extends Vue {
@@ -16,36 +16,49 @@ export default class NumberRoll extends Vue {
 
   @Prop({
     type: [Number, String],
-    required: true
+    default: 0,
+    validator(value) {
+      return Number.isInteger(+value);
+    }
   }) startNum!: string | number;
 
   @Prop({
     type: [Number, String],
-    required: true
+    required: true,
+    validator(value) {
+      return Number.isInteger(+value);
+    }
   }) endNum!: string | number;
 
   @Prop({
     type: [Number, String],
-    default: 2000
+    default: 3000,
+    validator(value) {
+      return Number.isInteger(+value);
+    }
   }) duration!: string | number;
 
   @Prop({
     type: String,
-    default: 'ease-in-out'
+    default: 'ease-in-out',
+    validator(value) {
+      return ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'].includes(value) || value.includes('cubic-bezier');
+    }
   }) timeFunction!: string;
 
   @Prop({
     type: [Number, String],
-    default: 0
+    default: 0,
+    validator(value) {
+      return Number.isInteger(+value);
+    }
   }) minLength!: string | number;
 
   @Prop({
     type: String,
     required: true,
     validator(value) {
-
-      if(!/^\d/g.test(value) || /[a-z]+$/g.test(value)) return false;
-      return true;
+      return /^\d/g.test(value) && /[a-z]+$/g.test(value);
     }
   }) rollHeight!: string;
 
@@ -64,6 +77,14 @@ export default class NumberRoll extends Vue {
     return +this.rollHeight.replace(new RegExp(this.rollHeighUnit, 'g'), '');
   }
 
+
+  @Watch('startNum')
+  @Watch('rollHeight')
+  @Watch('minLength')
+  onPropsChange() {
+    this.init();
+  }
+
   created() {
 
     this.init();
@@ -72,20 +93,15 @@ export default class NumberRoll extends Vue {
   /**
    * methods
    */
-
   init() {
 
-    const length = this.rollNumber.toString().length;
-    const liTranslate = [];
-    for(let i = 0; i < length; i++) {
-      this.$set(this.liTranslate, i, { transform: 'translateY(0)' });
-    }
-
-    this.startNum.toString().split('').forEach((item, idx) => this.setLiTranslate(idx, item));
+    this.liTranslate = [];
+    this.startNum.toString().padStart(+this.minLength, '0').split('').forEach((item, idx) => this.setLiTranslate(idx, item));
   }
 
   startRoll() {
 
+    this.liTranslate = [];
     this.rollNumber.split('').forEach((item, idx) => this.setLiTranslate(idx, item));
   }
 
@@ -108,6 +124,9 @@ export default class NumberRoll extends Vue {
   li {
     display: inline-block;
     transition-property: transform;
+    box-sizing: border-box;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 
     p {
       font-size: initial;
