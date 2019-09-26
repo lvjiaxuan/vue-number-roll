@@ -1,29 +1,12 @@
 # vue-number-roll
 
-## Project setup
-```
-npm install
-```
+![images](https://img.shields.io/badge/vue-2.6.10-brightgreen)
+![images](https://img.shields.io/badge/vue--cli-3.x-lightgrey)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Install
 
-### Compiles and minifies for production
 ```
-npm run build
+npm i vue-number-roll
 ```
+## Options
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

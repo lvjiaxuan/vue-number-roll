@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <number-roll ref="number-roll" number="923" duration="1000" min-length="4" rollHeight="50px"/>
+    <number-roll class="custom" ref="number-roll" startNum="102" endNum="923" duration="1000" min-length="4" rollHeight="50px"/>
     <br>
     <button @click="go">test</button>
   </div>
@@ -24,4 +24,7 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+.custom {
+  li { width: 50px; }
+}
 </style>

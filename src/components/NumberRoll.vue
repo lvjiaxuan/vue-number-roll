@@ -17,7 +17,12 @@ export default class NumberRoll extends Vue {
   @Prop({
     type: [Number, String],
     required: true
-  }) number!: string | number;
+  }) startNum!: string | number;
+
+  @Prop({
+    type: [Number, String],
+    required: true
+  }) endNum!: string | number;
 
   @Prop({
     type: [Number, String],
@@ -36,12 +41,27 @@ export default class NumberRoll extends Vue {
 
   @Prop({
     type: String,
-    required: true
+    required: true,
+    validator(value) {
+
+      if(!/^\d/g.test(value) || /[a-z]+$/g.test(value)) return false;
+      return true;
+    }
   }) rollHeight!: string;
 
   get rollNumber() {
 
-    return this.number.toString().padStart(+this.minLength, '0');
+    return this.endNum.toString().padStart(+this.minLength, '0');
+  }
+
+  get rollHeighUnit() {
+
+    return this.rollHeight.replace(/^\d+/g, '');
+  }
+
+  get rollHeightNum() {
+
+    return +this.rollHeight.replace(new RegExp(this.rollHeighUnit, 'g'), '');
   }
 
   created() {
@@ -60,16 +80,18 @@ export default class NumberRoll extends Vue {
     for(let i = 0; i < length; i++) {
       this.$set(this.liTranslate, i, { transform: 'translateY(0)' });
     }
+
+    this.startNum.toString().split('').forEach((item, idx) => this.setLiTranslate(idx, item));
   }
 
   startRoll() {
 
-    const unit = this.rollHeight.replace(/^\d+/g, '');
-    const num = +this.rollHeight.replace(new RegExp(unit, 'g'), '');
+    this.rollNumber.split('').forEach((item, idx) => this.setLiTranslate(idx, item));
+  }
 
-    this.rollNumber.split('').forEach((item, idx) => {
-      this.$set(this.liTranslate, idx, { transform: 'translateY(' + (-item * num) + unit });
-    });
+  setLiTranslate(idx: number, item: number | string) {
+
+    this.$set(this.liTranslate, idx, { transform: 'translateY(' + (-item * this.rollHeightNum) + this.rollHeighUnit })
   }
 }
 </script>
@@ -85,8 +107,10 @@ export default class NumberRoll extends Vue {
 
   li {
     display: inline-block;
+    transition-property: transform;
 
     p {
+      font-size: initial;
       margin: 0;
       padding: 0;
       display: flex;
@@ -94,23 +118,6 @@ export default class NumberRoll extends Vue {
       align-items: center;
       box-sizing: border-box;
     }
-  }
-}
-
-.custom {
-  border: 1px solid red;
-
-  li {
-    // transition: transform 1.5s ease-out .1s;
-    transition-property: transform;
-    width: 50px;
-    height: 50px;
-    margin: 0 5px;
-  }
-
-  p {
-    border: 1px solid green;
-    font-size: 16px;
   }
 }
 </style>
