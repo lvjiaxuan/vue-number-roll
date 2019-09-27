@@ -3,7 +3,7 @@
 ![images](https://img.shields.io/badge/vue-2.6.10-brightgreen)
 ![images](https://img.shields.io/badge/vue--cli-3.x-lightgrey)
 
-> 一个vue数字滚动组件，[demo](https://github.com/lvjiaxuan/vue-number-roll/index.html)
+> 一个vue数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
 
 ## 安装
 
