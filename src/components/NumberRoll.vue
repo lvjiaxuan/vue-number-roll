@@ -1,7 +1,9 @@
 <template>
-  <ul class="base-num-roll custom" :style="{ height: rollHeight }">
-    <li v-for="m in liTranslate.length" :key="m" :style="[ liTranslate[m - 1], { 'transition-duration': duration / 1000 + 's' }, { 'transition-timing-function': timeFunction } ]">
-      <p v-for="n in 10" :key="n" :style="{ height: rollHeight }">{{ n - 1 }}</p>
+  <ul class="base-num-roll" :style="{ height: rollHeight }">
+    <li v-for="m in liTranslate.length" :key="m" :class="itemClass">
+      <div :style="[ liTranslate[m - 1], { 'transition-duration': duration / 1000 + 's' }, { 'transition-timing-function': timeFunction } ]">
+        <p v-for="n in 10" :key="n" :style="{ height: rollHeight }">{{ reverse ? 10 - n : n - 1 }}</p>
+      </div>
     </li>
   </ul>
 </template>
@@ -18,7 +20,7 @@ export default class NumberRoll extends Vue {
     type: [Number, String],
     default: 0,
     validator(value) {
-      return Number.isInteger(+value);
+      return Number.isInteger(+value) && +value >=0;
     }
   }) startNum!: string | number;
 
@@ -26,7 +28,7 @@ export default class NumberRoll extends Vue {
     type: [Number, String],
     required: true,
     validator(value) {
-      return Number.isInteger(+value);
+      return Number.isInteger(+value) && +value >=0;
     }
   }) endNum!: string | number;
 
@@ -34,7 +36,7 @@ export default class NumberRoll extends Vue {
     type: [Number, String],
     default: 3000,
     validator(value) {
-      return Number.isInteger(+value);
+      return Number.isInteger(+value) && +value >=0;
     }
   }) duration!: string | number;
 
@@ -50,7 +52,7 @@ export default class NumberRoll extends Vue {
     type: [Number, String],
     default: 0,
     validator(value) {
-      return Number.isInteger(+value);
+      return Number.isInteger(+value) && +value >=0;
     }
   }) minLength!: string | number;
 
@@ -61,6 +63,21 @@ export default class NumberRoll extends Vue {
       return /^\d/g.test(value) && /[a-z]+$/g.test(value);
     }
   }) rollHeight!: string;
+
+  @Prop({
+    type: Boolean,
+    default: false
+  }) reverse!: boolean;
+
+  @Prop({
+    type: String,
+    required: true
+  }) itemClass!: string;
+
+  @Prop({
+    type: Boolean,
+    default: false
+  }) autoplay!: boolean;
 
   get rollNumber() {
 
@@ -77,7 +94,6 @@ export default class NumberRoll extends Vue {
     return +this.rollHeight.replace(new RegExp(this.rollHeighUnit, 'g'), '');
   }
 
-
   @Watch('startNum')
   @Watch('rollHeight')
   @Watch('minLength')
@@ -87,7 +103,11 @@ export default class NumberRoll extends Vue {
 
   created() {
 
-    this.init();
+    this.autoplay && this.init();
+  }
+
+  mounted() {
+    setTimeout(this.start);
   }
 
   /**
@@ -99,15 +119,20 @@ export default class NumberRoll extends Vue {
     this.startNum.toString().padStart(+this.minLength, '0').split('').forEach((item, idx) => this.setLiTranslate(idx, item));
   }
 
-  startRoll() {
+  start() {
 
     this.liTranslate = [];
     this.rollNumber.split('').forEach((item, idx) => this.setLiTranslate(idx, item));
   }
 
-  setLiTranslate(idx: number, item: number | string) {
+  reset() {
+    this.init();
+  }
 
-    this.$set(this.liTranslate, idx, { transform: 'translateY(' + (-item * this.rollHeightNum) + this.rollHeighUnit })
+  setLiTranslate(idx: number, item: number | string) {
+   
+
+    this.$set(this.liTranslate, idx, { transform: 'translateY(' + ((this.reverse ? ((9 - +item) * -this.rollHeightNum) : (-item * this.rollHeightNum))) + this.rollHeighUnit + ')' });
   }
 }
 </script>
@@ -117,19 +142,15 @@ export default class NumberRoll extends Vue {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: inline-block;
-  font-size: 0;
   overflow: hidden;
+  display: inline-flex;
 
   li {
-    display: inline-block;
     transition-property: transform;
     box-sizing: border-box;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-
     p {
-      font-size: initial;
       margin: 0;
       padding: 0;
       display: flex;

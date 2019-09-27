@@ -10,27 +10,40 @@
         :duration="options.duration.value"
         :time-function="options.timeFunction.value"
         :min-length="options.minLength.value"
-        :roll-height="options.rollHeight.value"/>
+        :roll-height="options.rollHeight.value"
+        :autoplay="options.autoplay.value"
+        :reverse="options.reverse.value"
+        item-class="num-item"/>
     </section>
 
     <section class="options">
 
       <label v-for="(item, key) in options" :key="key" :for="key">
         {{ key }}:
-        <input :type="item.type" :name="key" v-model="item.value"/>
+        <input :type="item.type" :id="key" v-model="item.value"/>
       </label>
 
     </section>
 
     <button @click="go">滚起来</button>
+    <button @click="reset">重置</button>
 
     <code>{{ codeText }}</code>
+
+<code class="css-style">.num-item {
+  width: 100px;
+  margin: 10px;
+  background: linear-gradient(0deg,rgba(100,184,255,1) 0%,rgba(0,120,255,1) 50%,rgba(100,184,255,1) 100%);
+  border-radius: 8px;
+  font-size: 80px;
+  color: #fff;
+}</code>
 
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import NumberRoll from './components/NumberRoll.vue';
 
 @Component({
@@ -65,27 +78,57 @@ export default class App extends Vue {
       value: 123,
       type: 'number'
     },
+    reverse: {
+      value: false,
+      type: 'checkbox'
+    },
+    autoplay: {
+      value: false,
+      type: 'checkbox'
+    }
   }
 
   get codeText() {
+
     return `<number-roll
-              startNum="${ this.options.startNum.value }"
-              endNum="${ this.options.endNum.value }"
-              duration="${ this.options.duration.value }"
-              time-function="${ this.options.timeFunction.value }"
-              min-length="${ this.options.minLength.value }"
-              roll-height="${ this.options.rollHeight.value }"/>`
+            startNum="${ this.options.startNum.value }"
+            endNum="${ this.options.endNum.value }"
+            duration="${ this.options.duration.value }"
+            time-function="${ this.options.timeFunction.value }"
+            min-length="${ this.options.minLength.value }"
+            roll-height="${ this.options.rollHeight.value }"
+            item-class="num-item"
+            ${ this.options.autoplay.value ? 'autoplay' : '' }
+            ${ this.options.reverse.value ? 'reverse' : '' } />`;
+  }
+
+  @Watch('options.autoplay.value')
+  onAutoplayChange(value: boolean) {
+    sessionStorage.setItem('autoplay', value.toString());
+  }
+
+  created() {
+    const autoplay = sessionStorage.getItem('autoplay');
+    if(autoplay === 'true') {
+      this.options.autoplay.value = true;
+    } else {
+      this.options.autoplay.value = false;
+    }
   }
 
   go() {
-    (<NumberRoll>this.$refs['number-roll']).startRoll();
+    (<NumberRoll>this.$refs['number-roll']).start();
+  }
+
+  reset() {
+    (<NumberRoll>this.$refs['number-roll']).reset();
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  max-width: 1000px;
+  max-width: 888px;
   margin: 0 auto;
 }
 .title {
@@ -100,13 +143,14 @@ export default class App extends Vue {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 20px 0;
 
   label {
     display: inline-block;
     margin: 15px 30px 15px 0;
   }
 
-  input {
+  input[type=text], input[type=number] {
     display: inline-block;
     padding: 4px 7px;
     width: 70px;
@@ -121,8 +165,15 @@ export default class App extends Vue {
     border-radius: 4px;
     transition: all .3s;
   }
+
+  input[type=checkbox] {
+    margin: 0;
+    width: 25px;
+    height: 25px;
+  }
 }
 button {
+  margin-top: 10px;
   color: #470938;
   width: 100%;
   margin-bottom: 0;
@@ -156,15 +207,16 @@ code {
   overflow-x: auto;
   color: #333;
   font-size: 14px;
-}
-.custom {
-  color: #8d448b;
-  li {
-    width: 100px;
-    p {
-      border: 1px solid #cc6a87;
-      font-size: 100px;
-    }
+  &.css-style {
+    white-space: pre-wrap;
   }
+}
+.num-item {
+  border-radius: 8px;
+  width: 100px;
+  margin: 10px;
+  background: linear-gradient(0deg,rgba(100,184,255,1) 0%,rgba(0,120,255,1) 50%,rgba(100,184,255,1) 100%);
+  font-size: 80px;
+  color: #fff;
 }
 </style>

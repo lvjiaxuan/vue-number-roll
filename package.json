@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:lib": "vue-cli-service build --target lib --name NumberRoll ./src/components/NumberRoll.vue"
+    "build:lib": "vue-cli-service build --target lib --name NumberRoll ./src/components/NumberRoll.vue",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^2.6.9",
