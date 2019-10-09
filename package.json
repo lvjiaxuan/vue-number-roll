@@ -1,6 +1,6 @@
 {
-  "name": "vue-number-roll",
-  "version": "0.1.2",
+  "name": "@lvjiaxuan/vue-number-roll",
+  "version": "1.0.0",
   "main": "./dist/NumberRoll.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,7 +9,7 @@
   },
   "author": "lvjiaxuan",
   "license": "MIT",
-  "repository": "https://github.com/lvjiaxuan/vue-number-roll.git",
+  "repository": "https://github.com/lvjiaxuan/vue-number-roll",
   "keywords": [
     "vue",
     "number roll"
@@ -39,6 +39,6 @@
     "last 2 versions"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://registry.npmjs.org/"
   }
 }
