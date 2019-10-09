@@ -1,12 +1,19 @@
 {
   "name": "vue-number-roll",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "main": "./dist/NumberRoll.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:lib": "vue-cli-service build --target lib --name NumberRoll ./src/components/NumberRoll.vue",
     "build": "vue-cli-service build"
   },
+  "author": "lvjiaxuan",
+  "license": "MIT",
+  "repository": "https://github.com/lvjiaxuan/vue-number-roll.git",
+  "keywords": [
+    "vue",
+    "number roll"
+  ],
   "dependencies": {
     "core-js": "^2.6.9",
     "vue": "^2.6.10",
@@ -30,5 +37,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

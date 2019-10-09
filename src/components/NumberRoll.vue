@@ -103,11 +103,12 @@ export default class NumberRoll extends Vue {
 
   created() {
 
-    this.autoplay && this.init();
+    this.init();
   }
 
   mounted() {
-    setTimeout(this.start);
+
+    this.autoplay && setTimeout(this.start);
   }
 
   /**
