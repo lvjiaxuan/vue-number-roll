@@ -1,39 +1,44 @@
 {
-  "name": "vue-number-roll",
-  "version": "0.0.0",
+  "name": "@lvjiaxuan/vue-number-roll",
+  "version": "1.0.0",
+  "main": "./dist/NumberRoll.umd.min.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vue-cli-service serve",
+    "build:lib": "vue-cli-service build --target lib --name NumberRoll ./src/components/NumberRoll.vue",
+    "build": "vue-cli-service build"
   },
+  "author": "lvjiaxuan",
+  "license": "MIT",
+  "repository": "https://github.com/lvjiaxuan/vue-number-roll",
+  "keywords": [
+    "vue",
+    "number roll"
+  ],
   "dependencies": {
-    "commitizen": "^4.2.3",
-    "vue": "^3.0.5"
+    "core-js": "^2.6.9",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.1",
-    "@vue/compiler-sfc": "^3.0.11",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.23.0",
-    "husky": "^6.0.0",
-    "lint-staged": "^10.5.4",
-    "prettier": "^2.2.1",
-    "vite": "^2.1.5"
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-typescript": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "sass": "^1.22.12",
+    "sass-loader": "^8.0.0",
+    "typescript": "^3.6.3",
+    "vue-template-compiler": "^2.6.10"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "prettier -w",
-      "eslint -fix"
-    ]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
