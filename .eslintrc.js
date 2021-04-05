@@ -10,5 +10,5 @@ module.exports = {
     sourceType: 'module',// 默认script modules表示esm
   },
   plugins: [],
-  extends: ["eslint:recommended"]
+  extends: ['eslint:recommended']
 }
