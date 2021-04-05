@@ -20,6 +20,7 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "sass": "^1.32.8",
+    "typescript": "^4.2.3",
     "vite": "^2.1.5"
   },
   "config": {
