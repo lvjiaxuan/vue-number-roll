@@ -1,5 +1,19 @@
 <template>
-  <p>xxx</p>
+  <ul class="base-num-roll" :style="{ height: rollHeight }">
+    <li v-for="m in liTranslate.length" :key="m" :class="itemClass">
+      <div
+        :style="[
+          liTranslate[m - 1],
+          { 'transition-duration': duration / 1000 + 's' },
+          { 'transition-timing-function': timeFunction },
+        ]"
+      >
+        <p v-for="n in 10" :key="n" :style="{ height: rollHeight }">
+          {{ reverse ? 10 - n : n - 1 }}
+        </p>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -58,16 +72,18 @@ const props = defineProps({
   },
 })
 
-let liTranslate: string[] = []
+let liTranslate: { transform: string }[] = []
 
 const rollNumber = computed(() => props.endNumber.toString().padStart(+props.minLength, '0'))
 const rollHeightUnit = computed(() => props.rollHeight.replace(/\d/g, ''))
-const rollHeightNumber = computed(() => props.rollHeight.replace(new RegExp(rollHeightUnit.value, 'g'), ''))
+const rollHeightNumber = computed(
+  () => +props.rollHeight.replace(new RegExp(rollHeightUnit.value, 'g'), '')
+)
 
 watch([props.startNumber, props.rollHeight, props.minLength], init, { immediate: true })
 
 onBeforeMount(init)
-onMounted(() => props.autoplay && setTimeout(start))
+onMounted(() => props.autoplay && start())
 
 /**
  * methods
@@ -75,15 +91,24 @@ onMounted(() => props.autoplay && setTimeout(start))
 
 function init() {
   liTranslate = []
-  props.startNumber.toString().padStart(+props.minLength, '0').split('').forEach((item, idx) => setLiTranslate(idx, item))
+  props.startNumber
+    .toString()
+    .padStart(+props.minLength, '0')
+    .split('')
+    .forEach((item, idx) => setLiTranslate(idx, +item))
 }
 
 function start() {
-
+  liTranslate.length = 0
+  rollNumber.value.split('').forEach((item, idx) => setLiTranslate(idx, +item))
 }
 
-function setLiTranslate(idx: number, item: number | string) {
-  // this.$set(this.liTranslate, idx, { transform: 'translateY(' + ((this.reverse ? ((9 - +item) * -this.rollHeightNum) : (-item * this.rollHeightNum))) + this.rollHeighUnit + ')' });
+function setLiTranslate(idx: number, item: number) {
+  liTranslate[idx] = {
+    transform: `translateY(${
+      props.reverse ? (9 - +item) * rollHeightNumber.value : -item * rollHeightNumber.value
+    })`,
+  }
 }
 </script>
 
