@@ -5,9 +5,9 @@
     <section class="container">
       <number-roll
         class="custom"
-        ref="number-roll"
-        :start-num="options.startNum.value"
-        :end-num="options.endNum.value"
+        ref="numberRoll"
+        :start-number="options.startNumber.value"
+        :end-number="options.endNumber.value"
         :duration="options.duration.value"
         :time-function="options.timeFunction.value"
         :min-length="options.minLength.value"
@@ -38,10 +38,11 @@
   </div>
 </template>
 
-<script setup=", context" lang="ts">
-import { reactive, computed, watch, onBeforeMount } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, computed, watch, onBeforeMount, onMounted } from 'vue'
 import NumberRoll from './components/NumberRoll.vue'
 
+const numberRoll = ref<NumberRoll>(null)
 const options = reactive({
   duration: {
     value: 2555,
@@ -59,11 +60,11 @@ const options = reactive({
     value: '120px',
     type: 'text',
   },
-  startNum: {
+  startNumber: {
     value: 22,
     type: 'number',
   },
-  endNum: {
+  endNumber: {
     value: 123,
     type: 'number',
   },
@@ -79,8 +80,8 @@ const options = reactive({
 
 const codeText = computed(
   () => `<number-roll
-            startNum="${options.startNum.value}"
-            endNum="${options.endNum.value}"
+            startNumber="${options.startNumber.value}"
+            endNumber="${options.endNumber.value}"
             duration="${options.duration.value}"
             time-function="${options.timeFunction.value}"
             min-length="${options.minLength.value}"
@@ -103,14 +104,12 @@ onBeforeMount(() => {
   options.autoplay.value = autoplay === 'true'
 })
 
-console.log(context)
-
 function go() {
-  // this.$refs['number-roll']).start()
+  numberRoll.value.start()
 }
 
 function reset() {
-
+  numberRoll.value.init()
 }
 </script>
 

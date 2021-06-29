@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, onBeforeMount, onMounted, watch, watchEffect } from 'vue'
+import { ref, computed, defineProps, onBeforeMount, onMounted, watch } from 'vue'
 
 const props = defineProps({
   startNumber: {
@@ -28,6 +28,13 @@ const props = defineProps({
     },
   },
   endNumber: {
+    type: [Number, String],
+    default: 3000,
+    validator(value: number | string) {
+      return Number.isInteger(+value) && +value >= 0
+    },
+  },
+  duration: {
     type: [Number, String],
     default: 3000,
     validator(value: number | string) {
@@ -72,7 +79,7 @@ const props = defineProps({
   },
 })
 
-let liTranslate: { transform: string }[] = []
+let liTranslate = ref<{ transform: string }[]>([])
 
 const rollNumber = computed(() => props.endNumber.toString().padStart(+props.minLength, '0'))
 const rollHeightUnit = computed(() => props.rollHeight.replace(/\d/g, ''))
@@ -80,7 +87,7 @@ const rollHeightNumber = computed(
   () => +props.rollHeight.replace(new RegExp(rollHeightUnit.value, 'g'), '')
 )
 
-watch([props.startNumber, props.rollHeight, props.minLength], init, { immediate: true })
+watch([() => props.startNumber, () => props.rollHeight, () => props.minLength], init)
 
 onBeforeMount(init)
 onMounted(() => props.autoplay && start())
@@ -90,7 +97,7 @@ onMounted(() => props.autoplay && start())
  */
 
 function init() {
-  liTranslate = []
+  liTranslate.value = []
   props.startNumber
     .toString()
     .padStart(+props.minLength, '0')
@@ -99,14 +106,15 @@ function init() {
 }
 
 function start() {
-  liTranslate.length = 0
+  liTranslate.value.length = 0
   rollNumber.value.split('').forEach((item, idx) => setLiTranslate(idx, +item))
 }
 
 function setLiTranslate(idx: number, item: number) {
-  liTranslate[idx] = {
+  liTranslate.value[idx] = {
     transform: `translateY(${
-      props.reverse ? (9 - +item) * rollHeightNumber.value : -item * rollHeightNumber.value
+      (props.reverse ? (9 - +item) * rollHeightNumber.value : -item * rollHeightNumber.value) +
+      rollHeightUnit.value
     })`,
   }
 }
