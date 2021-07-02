@@ -8,8 +8,11 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "dom"],
-    "strictNullChecks": true
+    "lib": ["ESNext", "DOM"],
+    "strictNullChecks": true,
+    "types": ["vite/client"],
+    "declaration": true,
+    "noImplicitAny": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
