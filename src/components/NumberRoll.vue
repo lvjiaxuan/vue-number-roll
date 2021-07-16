@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps, onBeforeMount, onMounted, watch } from 'vue'
+import { ref, computed, onBeforeMount, onMounted, watch } from 'vue'
 
 const props = defineProps({
   startNumber: {
@@ -95,6 +95,11 @@ onMounted(() => props.autoplay && start())
 /**
  * methods
  */
+
+defineExpose({
+  start,
+  reset: init
+})
 
 function init() {
   liTranslate.value = []
