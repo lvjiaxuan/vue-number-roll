@@ -43,7 +43,8 @@
 // https://github.com/vuejs/rfcs/pull/227
 // https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
 import { ref, reactive, computed, watch, onBeforeMount, onMounted, defineComponent } from 'vue'
-import NumberRoll from './components/NumberRoll.vue'
+import NumberRoll from './components/NumberRoll'
+import { ElButton } from 'element-plus'
 
 const options = reactive({
   duration: {
@@ -106,10 +107,9 @@ onBeforeMount(() => {
   options.autoplay.value = autoplay === 'true'
 })
 
-const numberRoll = ref()
-// todo start reset 声明呢
-const go = () => numberRoll.value.start()
-const reset = () => numberRoll.value.reset()
+const numberRoll = ref<typeof NumberRoll>()
+const go = () => numberRoll.value!.start()
+const reset = () => numberRoll.value!.reset()
 </script>
 
 <style lang="scss">
