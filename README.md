@@ -1,15 +1,21 @@
-# vue-number-roll
+# vue2-number-roll
 
-![images](https://img.shields.io/badge/vue-2.6.10-brightgreen)
-![images](https://img.shields.io/badge/vue--cli-3.x-lightgrey)
+![images](https://img.shields.io/badge/vue-2.6.14-brightgreen)
 
-> 一个vue数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
+一个Vue2数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
+
 
 ## 安装
 
 ```
-npm i vue-number-roll
+npm i vue2-number-roll
 ```
+
+Vue3的也有：
+```bash
+npm i vue3-number-roll
+```
+
 ## 选项
 
 | props        | 默认值      | 描述                            |
@@ -44,3 +50,21 @@ this.$refs['number-roll'].reset();
 ## 注意
 
 - 不支持负数
+
+## 说点什么
+
+由于TypeScript + Vue2不先天兼容（[看这里](https://www.zhihu.com/question/310485097/answer/591869966)），所以需要加点调料去腥（[看这里](https://cn.vuejs.org/v2/guide/typescript.html)）。
+
+一开始是想用Vue2 Options API的写法，这也是最简单的开始：Vite2 + Vue2 + Vetur + TypeScript。
+
+但是想想，组件库谁tm在乎你怎么写，而且还要做个Vue3版本的，那就用@vue/composition-api好了，这样可以不用再写一遍。
+
+然后再想想，Vetur不支持我其他Vue3项目啊，不想切换来切换去，我要用Volar。其中，注意要根据其文档描述：**Setup for Vue2**。
+
+> 关于Volar的Setup for Vue2，我实践了一些例子，已经表明了无论如何Vue2都不推荐使用了。详看[issue](https://github.com/johnsoncodehk/volar/issues/647#event-5543942889)。
+
+> 关于`@vue/composition-api`，其写法也不是百分百等同于Vue2，还是有一些限制的。
+
+都到这个地步，干脆再加个script setup吧。
+
+最后，整个项目就使用了这些：Vite2 + Vue2 + Volar(Setup for Vue2) + TypeScript + @vue/composition-api + unplugin-vue2-script-setup

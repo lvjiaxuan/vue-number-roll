@@ -2,16 +2,16 @@ module.exports = {
   env: {
     commonjs: true,
     browser: true,
-    es2021: true,
+    es6: true,// for globals and syntax
   },
-  extends: ['plugin:vue/essential'],
+  extends: ['eslint:recommended', 'plugin:vue/recommended'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 12,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
   globals: {
-    Vue: 'readonly',
     process: 'readonly',
+    __dirname: 'readonly'
   },
 }

@@ -1,57 +1,55 @@
 <template>
-  <div id="app">
+  <main>
     <h1 class="title">vue-number-roll</h1>
 
     <section class="container">
-      <number-roll
+      <!-- <number-roll
         class="custom"
-        ref="numberRoll"
-        :start-number="options.startNumber.value"
-        :end-number="options.endNumber.value"
-        :duration="options.duration.value"
-        :time-function="options.timeFunction.value"
-        :min-length="options.minLength.value"
-        :roll-height="options.rollHeight.value"
-        :autoplay="options.autoplay.value"
-        :reverse="options.reverse.value"
-        item-class="num-item"
-      />
+        ref="number-roll"
+        custom-class="num-item"
+        v-bind="optionsValue"
+      /> -->
     </section>
 
     <section class="options">
       <label v-for="(item, key) in options" :key="key" :for="key">
-        {{ key }}:
-        <input :type="item.type" :id="key" v-model="item.value" />
+        {{ key }}:<input :type="item.type" :id="key" v-model="item.value" />
       </label>
     </section>
 
     <button @click="go">滚起来</button>
     <button @click="reset">重置</button>
 
-    <code>{{ codeText }}</code>
+    <code>{{ htmlCode }}</code>
 
     <code class="css-style"
-      >.num-item { width: 100px; margin: 10px; background: linear-gradient(0deg,rgba(100,184,255,1)
-      0%,rgba(0,120,255,1) 50%,rgba(100,184,255,1) 100%); border-radius: 8px; font-size: 80px;
-      color: #fff; }</code
+      >.num-item { width: 100px; margin: 10px; background: linear-gradient(0deg,rgba(100,184,255,1) 0%,rgba(0,120,255,1)
+      50%,rgba(100,184,255,1) 100%); border-radius: 8px; font-size: 80px; color: #fff; }</code
     >
-  </div>
+  </main>
 </template>
 
+<script lang="ts" setup>
+import { computed, reactive, ref, toRefs, watch } from '@vue/composition-api'
+import { extend } from 'vue/types/umd'
 
-<script setup lang="ts">
-// https://github.com/vuejs/rfcs/pull/227
-// https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
-import { ref, reactive, computed, watch, onBeforeMount, onMounted, defineComponent } from 'vue'
-import NumberRoll from './components/NumberRoll'
-import { ElButton } from 'element-plus'
-
+/**
+ * data
+ */
 const options = reactive({
+  startNumber: {
+    value: 123,
+    type: 'number',
+  },
+  endNumber: {
+    value: 9876,
+    type: 'number',
+  },
   duration: {
     value: 2555,
     type: 'number',
   },
-  timeFunction: {
+  transitionTimingFunction: {
     value: 'ease-in-out',
     type: 'text',
   },
@@ -63,14 +61,6 @@ const options = reactive({
     value: '120px',
     type: 'text',
   },
-  startNumber: {
-    value: 22,
-    type: 'number',
-  },
-  endNumber: {
-    value: 123,
-    type: 'number',
-  },
   reverse: {
     value: false,
     type: 'checkbox',
@@ -81,12 +71,15 @@ const options = reactive({
   },
 })
 
-const codeText = computed(
+/**
+ * computed
+ */
+const htmlCode = computed(
   () => `<number-roll
-            startNumber="${options.startNumber.value}"
-            endNumber="${options.endNumber.value}"
+            startNum="${options.startNumber.value}"
+            endNum="${options.endNumber.value}"
             duration="${options.duration.value}"
-            time-function="${options.timeFunction.value}"
+            time-function="${options.transitionTimingFunction.value}"
             min-length="${options.minLength.value}"
             roll-height="${options.rollHeight.value}"
             item-class="num-item"
@@ -94,29 +87,41 @@ const codeText = computed(
             ${options.reverse.value ? 'reverse' : ''} />`
 )
 
-watch(
-  () => options.autoplay.value,
-  (newValue: boolean) => sessionStorage.setItem('autoplay', newValue.toString()),
-  {
-    immediate: true,
-  }
+const optionsValue = computed(() =>
+  (Object.keys(options) as (keyof typeof options)[]).reduce<
+    | { [s: string]: any } // 也不知道为什么，不加这句会类型报错，估计是个feature
+    | {
+        [P in keyof typeof options]: typeof options[P] extends { value: infer V } ? V : never
+      }
+  >((acc, key) => {
+    acc[key] = options[key].value
+    return acc
+  }, {})
 )
 
-onBeforeMount(() => {
-  const autoplay = sessionStorage.getItem('autoplay')
-  options.autoplay.value = autoplay === 'true'
-})
+/**
+ * watch
+ */
+watch(options.autoplay, newValue => sessionStorage.setItem('autoplay', newValue.toString()))
 
-const numberRoll = ref<typeof NumberRoll>()
-const go = () => numberRoll.value!.start()
-const reset = () => numberRoll.value!.reset()
+/**
+ * init
+ */
+options.autoplay.value = sessionStorage.getItem('autoplay') === 'true'
+
+/**
+ * methods
+ */
+const go = () => {
+  // ...
+}
+
+const reset = () => {
+  // ...
+}
 </script>
 
 <style lang="scss">
-#app {
-  max-width: 888px;
-  margin: 0 auto;
-}
 .title {
   text-align: center;
   color: #5026a7;
@@ -199,12 +204,7 @@ code {
   border-radius: 8px;
   width: 100px;
   margin: 10px;
-  background: linear-gradient(
-    0deg,
-    rgba(100, 184, 255, 1) 0%,
-    rgba(0, 120, 255, 1) 50%,
-    rgba(100, 184, 255, 1) 100%
-  );
+  background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
   font-size: 80px;
   color: #fff;
 }
