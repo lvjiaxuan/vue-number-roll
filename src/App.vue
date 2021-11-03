@@ -3,12 +3,19 @@
     <h1 class="title">vue-number-roll</h1>
 
     <section class="container">
-      <!-- <number-roll
+      <number-roll
         class="custom"
-        ref="number-roll"
+        ref="numberRollRef"
         custom-class="num-item"
-        v-bind="optionsValue"
-      /> -->
+        :start-number="options.startNumber.value"
+        :end-number="options.endNumber.value"
+        :duration="options.duration.value"
+        :transition-timing-function="options.transitionTimingFunction.value"
+        :min-length="options.minLength.value"
+        :roll-height="options.rollHeight.value"
+        :reverse="options.reverse.value"
+        :autoplay="options.autoplay.value"
+      />
     </section>
 
     <section class="options">
@@ -30,15 +37,16 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, toRefs, watch } from '@vue/composition-api'
-import { extend } from 'vue/types/umd'
+import NumberRoll from './components/NumberRoll.vue'
+import { computed, reactive, watch, ref, onMounted } from '@vue/composition-api'
 
 /**
  * data
  */
+const numberRollRef = ref<typeof NumberRoll>()
 const options = reactive({
   startNumber: {
-    value: 123,
+    value: 321,
     type: 'number',
   },
   endNumber: {
@@ -87,22 +95,16 @@ const htmlCode = computed(
             ${options.reverse.value ? 'reverse' : ''} />`
 )
 
-const optionsValue = computed(() =>
-  (Object.keys(options) as (keyof typeof options)[]).reduce<
-    | { [s: string]: any } // 也不知道为什么，不加这句会类型报错，估计是个feature
-    | {
-        [P in keyof typeof options]: typeof options[P] extends { value: infer V } ? V : never
-      }
-  >((acc, key) => {
-    acc[key] = options[key].value
-    return acc
-  }, {})
-)
+// { [P in keyof typeof options]: typeof options[P] extends { value: infer V } ? V : never }
 
 /**
  * watch
  */
 watch(options.autoplay, newValue => sessionStorage.setItem('autoplay', newValue.toString()))
+
+/**
+ * life cycle
+ */
 
 /**
  * init
@@ -114,14 +116,19 @@ options.autoplay.value = sessionStorage.getItem('autoplay') === 'true'
  */
 const go = () => {
   // ...
+  numberRollRef.value!.start()
 }
 
 const reset = () => {
-  // ...
+  numberRollRef.value!.reset()
 }
 </script>
 
 <style lang="scss">
+main {
+  width: 720px;
+  margin: 0 auto;
+}
 .title {
   text-align: center;
   color: #5026a7;
