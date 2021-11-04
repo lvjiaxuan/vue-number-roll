@@ -1,15 +1,15 @@
 <template>
-  <ul class="base-num-roll" :style="{ height: props.rollHeight }">
-    <li v-for="index in liTranslate.length" :key="index" :class="props.customClass">
+  <ul class="base-num-roll" :style="{ height: rollHeightRef }">
+    <li v-for="index in liTranslate.length" :key="index" :class="customClassRef">
       <div
         :style="[
           liTranslate[index - 1],
-          { 'transition-duration': +props.duration / 1000 + 's' },
-          { 'transition-timing-function': props.transitionTimingFunction },
+          { 'transition-duration': +durationRef / 1000 + 's' },
+          { 'transition-timing-function': transitionTimingFunctionRef },
         ]"
       >
-        <p v-for="n in 10" :key="n" :style="{ height: props.rollHeight }">
-          {{ props.reverse ? 10 - n : n - 1 }}
+        <p v-for="n in 10" :key="n" :style="{ height: rollHeightRef }">
+          {{ reverseDirectionRef ? 10 - n : n - 1 }}
         </p>
       </div>
     </li>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch, set } from '@vue/composition-api'
+import { ref, computed, onMounted, watch, set, toRefs, nextTick } from '@vue/composition-api'
 
 /**
  * props
@@ -25,12 +25,12 @@ import { ref, computed, onMounted, watch, set } from '@vue/composition-api'
 const props = defineProps({
   startNumber: {
     type: [Number, String],
-    default: 123,
+    default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
   endNumber: {
     type: [Number, String],
-    default: 9876,
+    default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
   duration: {
@@ -54,7 +54,7 @@ const props = defineProps({
     required: true,
     validator: (value: string) => /^\d+(px|rem|em|%)+$/g.test(value),
   },
-  reverse: {
+  reverseDirection: {
     type: Boolean,
     default: false,
   },
@@ -68,36 +68,35 @@ const props = defineProps({
   },
 })
 
-const {
-  startNumber,
-  endNumber,
-  // duration,
-  // transitionTimingFunction,
-  minLength,
-  rollHeight,
-  reverse,
-  autoplay,
-  // customClass,
-} = props
+const {// fixme 如果模板直接使用同名的变量，会报错，所以加了`Ref`
+  startNumber: startNumberRef,
+  endNumber: endNumberRef,
+  duration: durationRef,
+  transitionTimingFunction: transitionTimingFunctionRef,
+  minLength: minLengthRef,
+  rollHeight: rollHeightRef,
+  reverseDirection: reverseDirectionRef,
+  autoplay: autoplayRef,
+  customClass: customClassRef,
+} = toRefs(props)
 
 /**
  * data
  */
 const liTranslate = ref<{ transform: string }[]>([])
-const rollNumber = computed(() => endNumber.toString().padStart(+minLength, '0'))
-const rollHeightUnit = computed(() => rollHeight.replace(/\d/g, ''))
-const rollHeightNumber = computed(() => +rollHeight.replace(new RegExp(rollHeightUnit.value, 'g'), ''))
+const rollNumber = computed(() => endNumberRef.value.toString().padStart(+minLengthRef.value, '0'))
+const rollHeightUnit = computed(() => rollHeightRef.value.replace(/\d/g, ''))
+const rollHeightNumber = computed(() => +rollHeightRef.value.replace(new RegExp(rollHeightUnit.value, 'g'), ''))
 
 /**
- * compostion api
+ * watch
  */
-watch([() => startNumber, () => rollHeight, () => minLength], init)
+watch([startNumberRef, rollHeightRef, minLengthRef, reverseDirectionRef], init, { immediate: true })
 
 /**
  * life cycle
  */
-init()
-onMounted(() => autoplay && start())
+onMounted(() => autoplayRef.value && setTimeout(start, 1000))
 
 /**
  * methods
@@ -106,9 +105,9 @@ defineExpose({ start, reset: init })
 
 function init() {
   liTranslate.value.length = 0
-  startNumber
+  startNumberRef.value
     .toString()
-    .padStart(+minLength, '0')
+    .padStart(+minLengthRef.value, '0')
     .split('')
     .forEach((number, idx) => setLiTranslate(idx, +number))
 }
@@ -122,7 +121,7 @@ function setLiTranslate(idx: number, number: number) {
   // Vue2
   set(liTranslate.value, idx, {
     transform: `translateY(${
-      (reverse ? (9 - +number) * rollHeightNumber.value : -number * rollHeightNumber.value) + rollHeightUnit.value
+      (reverseDirectionRef.value ? (+number - 9) * rollHeightNumber.value : -number * rollHeightNumber.value) + rollHeightUnit.value
     })`,
   })
 }

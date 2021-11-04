@@ -13,7 +13,7 @@
         :transition-timing-function="options.transitionTimingFunction.value"
         :min-length="options.minLength.value"
         :roll-height="options.rollHeight.value"
-        :reverse="options.reverse.value"
+        :reverse-direction="options.reverseDirection.value"
         :autoplay="options.autoplay.value"
       />
     </section>
@@ -29,16 +29,16 @@
 
     <code>{{ htmlCode }}</code>
 
-    <code class="css-style"
-      >.num-item { width: 100px; margin: 10px; background: linear-gradient(0deg,rgba(100,184,255,1) 0%,rgba(0,120,255,1)
-      50%,rgba(100,184,255,1) 100%); border-radius: 8px; font-size: 80px; color: #fff; }</code
+    <code class="css-style">
+      .num-item { border-radius: 8px; width: 100px; margin: 10px; background: linear-gradient(0deg, rgba(100, 184, 255,
+      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }</code
     >
   </main>
 </template>
 
 <script lang="ts" setup>
 import NumberRoll from './components/NumberRoll.vue'
-import { computed, reactive, watch, ref, onMounted } from '@vue/composition-api'
+import { computed, reactive, watch, ref, watchEffect } from '@vue/composition-api'
 
 /**
  * data
@@ -46,7 +46,7 @@ import { computed, reactive, watch, ref, onMounted } from '@vue/composition-api'
 const numberRollRef = ref<typeof NumberRoll>()
 const options = reactive({
   startNumber: {
-    value: 321,
+    value: 123,
     type: 'number',
   },
   endNumber: {
@@ -69,7 +69,7 @@ const options = reactive({
     value: '120px',
     type: 'text',
   },
-  reverse: {
+  reverseDirection: {
     value: false,
     type: 'checkbox',
   },
@@ -92,7 +92,7 @@ const htmlCode = computed(
             roll-height="${options.rollHeight.value}"
             item-class="num-item"
             ${options.autoplay.value ? 'autoplay' : ''}
-            ${options.reverse.value ? 'reverse' : ''} />`
+            ${options.reverseDirection.value ? 'reverse-irection' : ''} />`
 )
 
 // { [P in keyof typeof options]: typeof options[P] extends { value: infer V } ? V : never }
@@ -100,7 +100,7 @@ const htmlCode = computed(
 /**
  * watch
  */
-watch(options.autoplay, newValue => sessionStorage.setItem('autoplay', newValue.toString()))
+watch(() => options.autoplay.value, newValue => sessionStorage.setItem('autoplay', newValue.toString()))
 
 /**
  * life cycle
@@ -115,12 +115,13 @@ options.autoplay.value = sessionStorage.getItem('autoplay') === 'true'
  * methods
  */
 const go = () => {
-  // ...
-  numberRollRef.value!.start()
+  // @ts-ignore
+  numberRollRef.value.start()
 }
 
 const reset = () => {
-  numberRollRef.value!.reset()
+  // @ts-ignore
+  numberRollRef.value.reset()
 }
 </script>
 

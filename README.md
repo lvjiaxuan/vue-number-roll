@@ -20,19 +20,20 @@ npm i vue3-number-roll
 
 | props        | 默认值      | 描述                            |
 | ------------ | ----------- | ------------------------------- |
-| startNum     | 0           | 滚动初始值                      |
-| endNum       | required    | 滚动结束值                      |
+| startNumber  | 0           | 滚动初始值                      |
+| endNumber    | 0    | 滚动结束值                      |
 | duration     | 3000        | transition-duration             |
-| timeFunction | ease-in-out | transition-timing-function      |
+| transitionTimingFunction | ease-in-out | transition-timing-function      |
 | minLength    | 0           | 滚动数字最小长度，用0补充在前面 |
 | rollHeight   | required    | 滚动组件高度                    |
-| reverse      | false       | 反转滚动方向                    |
-| itemClass    | required    | 每个滚动数字的样式              |
+| reverseDirection      | false       | 反转滚动方向                    |
+| autoplay      | false       | 1s后自动滚动                    |
+| customClass    | 无    | 每个滚动数字的样式              |
 
 ## 组件方法
 
 - start：开始滚动
-- reset：重置
+- reset：重置到初始值
 
 ```vue
 <template>
@@ -49,7 +50,8 @@ this.$refs['number-roll'].reset();
 
 ## 注意
 
-- 不支持负数
+- 没有负数
+- 没空测试边界情况，看着用
 
 ## 说点什么
 
