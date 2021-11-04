@@ -1,27 +1,35 @@
 {
   "name": "vue2-number-roll",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --ext .ts,.vue src"
+    "lint": "eslint --ext .ts,.vue src",
+    "cz": "git-cz"
   },
   "description": "initial demo",
   "keywords": [
     "vue2",
     "number",
-    "roll"
+    "roll",
+    "script setup",
+    "vite",
+    "@vue/composition-api"
   ],
-  "main": "index.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
   "browserslist": "last 2 versions, > 1%, not dead",
-  "author": "",
-  "email": "",
-  "homepage": "https://github.com",
+  "author": "lvjiaxuan",
+  "email": "471501748@qq.com",
+  "homepage": "https://github.com/lvjiaxuan/vue-number-roll#vue-number-roll",
   "repository": {
     "type": "git",
-    "url": "https://github.com"
+    "url": "https://github.com/lvjiaxuan/vue-number-roll"
   },
   "publishConfig": {
     "tag": "latest",
@@ -39,16 +47,23 @@
     "eslint": "^8.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "typescript": "^4.4.4",
     "unplugin-vue2-script-setup": "^0.6.13",
     "vite": "^2.6.13",
     "vite-plugin-vue2": "^1.9.0",
-    "vue-tsc": "^0.28.10"
+    "vue-tsc": "^0.28.10",
+    "commitizen": "^4.2.4"
   },
   "lint-staged": {
     "*": "prettier -w -u",
     "*.{vue,js}": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./.cz-simple"
+    }
   }
 }
