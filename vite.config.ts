@@ -1,7 +1,6 @@
 import path from 'path'
-import ScriptSetup from 'unplugin-vue2-script-setup/vite'
 import { defineConfig } from 'vite'
-import { createVuePlugin } from 'vite-plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,10 +11,5 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
   },
-  plugins: [
-    createVuePlugin(),
-    ScriptSetup({
-      /* options */
-    }),
-  ],
+  plugins: [vue()],
 })

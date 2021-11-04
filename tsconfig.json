@@ -15,8 +15,5 @@
     "noImplicitAny": true,
     "allowJs": true
   },
-  "vueCompilerOptions": {
-    "experimentalCompatMode": 2
-  },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
