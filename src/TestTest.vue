@@ -1,6 +1,5 @@
 <template>
-  <main>{{ foo }}</main>
-  <main>{{ haha }}</main>
+  <main>{{ foo }}-{{ haha }}</main>
 </template>
 
 <script lang="ts">
@@ -49,18 +48,16 @@
 // import { PropType } from 'vue'
 import { PropType } from '@vue/composition-api'
 export default {
-  data() {
-    return {
-      foo: 'foo'
-    }
-  },
-
   props: {
     haha: {
       type: String as PropType<'a' | 'b' | 'c'>,
       default: 'a',
+    },
+  },
+  data() {
+    return {
+      foo: 'foo',
     }
-  }
+  },
 }
-
 </script>
