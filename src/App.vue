@@ -1,11 +1,13 @@
 <template>
   <main>
-    <h1 class="title">vue-number-roll</h1>
+    <h1 class="title">
+      vue-number-roll
+    </h1>
 
     <section class="container">
       <number-roll
-        class="custom"
         ref="numberRollRef"
+        class="custom"
         custom-class="num-item"
         :start-number="options.startNumber.value"
         :end-number="options.endNumber.value"
@@ -19,26 +21,37 @@
     </section>
 
     <section class="options">
-      <label v-for="(item, key) in options" :key="key" :for="key">
-        {{ key }}:<input :type="item.type" :id="key" v-model="item.value" />
+      <label
+        v-for="(item, key) in options"
+        :key="key"
+        :for="key"
+      >
+        {{ key }}:<input
+          :id="key"
+          v-model="item.value"
+          :type="item.type"
+        >
       </label>
     </section>
 
-    <button @click="go">滚起来</button>
-    <button @click="reset">重置</button>
+    <button @click="go">
+      滚起来
+    </button>
+    <button @click="reset">
+      重置
+    </button>
 
     <code>{{ htmlCode }}</code>
 
     <code class="css-style">
       .num-item { border-radius: 8px; width: 100px; margin: 10px; background: linear-gradient(0deg, rgba(100, 184, 255,
-      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }</code
-    >
+      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }</code>
   </main>
 </template>
 
 <script lang="ts" setup>
 import NumberRoll from './components/NumberRoll.vue'
-import { computed, reactive, watch, ref, watchEffect } from '@vue/composition-api'
+import { computed, reactive, watch, ref } from 'vue'
 
 /**
  * data
@@ -100,7 +113,10 @@ const htmlCode = computed(
 /**
  * watch
  */
-watch(() => options.autoplay.value, newValue => sessionStorage.setItem('autoplay', newValue.toString()))
+watch(
+  () => options.autoplay.value,
+  newValue => sessionStorage.setItem('autoplay', newValue.toString())
+)
 
 /**
  * life cycle

@@ -7,13 +7,13 @@
 ## 安装
 
 ```bash
-npm i vue2-number-roll
+npm i vue3-number-roll
 ```
 
-Vue3 的也有：
+Vue2 的也有：
 
 ```bash
-npm i vue3-number-roll
+npm i vue2-number-roll
 ```
 
 ## 选项

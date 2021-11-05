@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "strictNullChecks": true,
-    "types": ["vite/client", "unplugin-vue2-script-setup/types"],
+    "types": ["vite/client"],
     "declaration": true,
     "noImplicitAny": true,
     "allowJs": true
