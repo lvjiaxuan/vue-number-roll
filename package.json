@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "dev": "vite",
-    "build:lib": "vite build -c vue.config.lib.js",
+    "build:lib": "vite build -c vite.config.lib.ts",
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.vue src",
