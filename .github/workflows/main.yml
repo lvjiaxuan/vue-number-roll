@@ -1,0 +1,27 @@
+name: Release CI
+
+on:
+ push:
+  tags:
+    - v0.*.*
+
+ workflow_dispatch:
+
+jobs:
+  release_job:
+    name: Release job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+        
+      - name: Set Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+
+      - name: Create release
+        uses: release-drafter/release-drafter@v5
+        env:
+         GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
