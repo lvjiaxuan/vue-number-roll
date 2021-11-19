@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: GH_PAGES_CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the vite-vue2 branch
+  # push:
+    # branches: [ vite-vue2 ]
+  # pull_request:
+    # branches: [ vite-vue2 ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  deploy_gh_pages:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout Setting
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+
+      - name: Run some scripts
+        run: |
+          node -v
+          npm -v
+          git -v
+ 
+      - name: Run main scripts
+        run: |
+          npm run build
+          cs dist
+          git init
+          git add -A
+          git commit -m 'gh pages ci deploy'
+          git push -f https://github.com/${{ github.repository }}.git gh-pages
