@@ -43,7 +43,7 @@ jobs:
           node-version: 16 # ${{ matrix.node }}
           cache: 'npm'
 
-      - uses: lvjiaxuan/release-deploy-publish-action
+      - uses: lvjiaxuan/release-deploy-publish-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
