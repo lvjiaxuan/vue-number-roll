@@ -24,6 +24,12 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.es.js",
+      "require": "./dist/my-lib.umd.js"
+    }
+  },
   "browserslist": "last 2 versions, > 1%, not dead",
   "author": "lvjiaxuan",
   "email": "471501748@qq.com",
