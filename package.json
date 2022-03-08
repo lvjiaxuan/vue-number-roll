@@ -9,7 +9,7 @@
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.vue src",
     "cz": "git add . && git-cz",
-    "ci": "npm i && npm run build"
+    "ci": "npm ci && npm run build"
   },
   "description": "Vue3 数字滚动组件",
   "keywords": [
