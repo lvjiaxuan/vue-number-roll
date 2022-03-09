@@ -1,16 +1,16 @@
-name: 'ci'
+name: gh-action
 
 on:
   push:
-    branches:
-      - vite-vue3
-    # tags:
-    #   - v*
+    # branches:
+    #   - vite-vue3
+    tags:
+      - v*
   workflow_dispatch:
 
 jobs:
-  deploy_job:
-    name: Deploy Job
+  ci_job:
+    name: CI Job
     runs-on: ubuntu-latest
 
     steps:
@@ -18,12 +18,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16 # ${{ matrix.node }}
-          cache: 'npm'
+          cache: npm
 
       - uses: lvjiaxuan/release-deploy-publish-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          debug: true
           enableDeployBoolean: true
-          deployScript: npm run ci"
+          deployScript: npm run ci

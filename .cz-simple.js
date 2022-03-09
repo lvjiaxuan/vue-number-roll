@@ -6,7 +6,7 @@ const typeChoices = [
   { value: 'fix', name: '  fix: 修复一个bug' },
   { value: 'wip', name: '  wip: 进行中，未完成，to rebase' },
   { value: 'perf', name: ' perf: 优化（性能、逻辑、重构等）' },
-  { value: 'build', name: 'build: 构建内容变化（依赖版本、babel、rc文件、confg等）' },
+  { value: 'build', name: 'build: 构建内容变化（依赖版本、babel、rc文件、config等）' },
   { value: 'docs', name: ' docs: README、添加帮助注释、其它文档等' },
   { value: 'release', name: '  rel: 发布版本' },
 ]

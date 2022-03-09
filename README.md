@@ -1,4 +1,4 @@
-# vue2-number-roll
+# vue-number-roll
 
 ![images](https://img.shields.io/badge/vue-2.6.14-brightgreen)
 
@@ -6,13 +6,13 @@
 
 ## 安装
 
-```bash
+```shell
 npm i vue3-number-roll
 ```
 
 Vue2 的也有：
 
-```bash
+```shell
 npm i vue2-number-roll
 ```
 
@@ -38,9 +38,9 @@ npm i vue2-number-roll
 ## 注意
 
 - 没有负数
-- 没空测试边界情况，看着用
+- 没多想测试边界情况，看着用
 
-## 说点什么
+## 关于 Vue2 说点什么
 
 由于 TypeScript + Vue2 不先天兼容（[看这里](https://www.zhihu.com/question/310485097/answer/591869966)），所以需要加点调料去腥（[看这里](https://cn.vuejs.org/v2/guide/typescript.html)）。
 
@@ -56,4 +56,4 @@ npm i vue2-number-roll
 
 都到这个地步，干脆再加个 script setup 吧。
 
-最后，整个项目就使用了这些：Vite2 + Vue2 + Volar(Setup for Vue2) + TypeScript + @vue/composition-api + unplugin-vue2-script-setup
+最后，vite-vue2 这个分支就使用了这些：Vite2 + Vue2 + Volar(Setup for Vue2) + TypeScript + @vue/composition-api + unplugin-vue2-script-setup
