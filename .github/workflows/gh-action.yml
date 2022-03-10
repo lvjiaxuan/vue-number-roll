@@ -2,10 +2,10 @@ name: gh-action
 
 on:
   push:
-    # branches:
-    #   - vite-vue3
-    tags:
-      - v*
+    branches:
+      - vite-vue3
+    # tags:
+    #   - v*
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          enableReleaseBoolean: true
-          enableDeployBoolean: true
-          deployScript: npm run ci
+          enableReleaseBoolean: false
+          enableDeployBoolean: false
+
+      - name: NPM Publish test
+        run: npm publish
