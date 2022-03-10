@@ -1,6 +1,6 @@
 {
   "name": "vue3-number-roll",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,8 @@
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.vue src",
     "cz": "git add . && git-cz",
-    "ci": "npm ci && npm run build"
+    "ci": "npm ci && npm run build",
+    "version": "npm run build:lib && npm version patch"
   },
   "description": "Vue3 数字滚动组件",
   "keywords": [
