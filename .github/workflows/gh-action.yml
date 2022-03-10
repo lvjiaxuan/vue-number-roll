@@ -27,10 +27,12 @@ jobs:
           enableReleaseBoolean: false
           enableDeployBoolean: false
 
-      - name: NPM Publish
+      - name: NPM build
         run: |
           npm ci
           npm run build:lib
+
+      - name: NPM Publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}
