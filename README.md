@@ -1,8 +1,8 @@
-# vue-number-roll
+# vue3-number-roll
 
-![images](https://img.shields.io/badge/vue-2.6.14-brightgreen)
+![images](https://img.shields.io/badge/vue-3.2.31-brightgreen)
 
-一个 Vue2 数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
+一个 Vue3 数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
 
 ## 安装
 
