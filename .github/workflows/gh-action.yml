@@ -27,5 +27,10 @@ jobs:
           enableReleaseBoolean: false
           enableDeployBoolean: false
 
-      - name: NPM Publish test
-        run: npm publish
+      - name: NPM Publish
+        run: |
+          npm ci
+          npm run build:lib
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
