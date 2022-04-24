@@ -1,5 +1,7 @@
 # vue3-number-roll
 
+[![NPM version](https://img.shields.io/npm/v/vue3-number-roll?color=a1b858&label=)](https://www.npmjs.com/package/vue3-number-roll)
+
 ![images](https://img.shields.io/badge/vue-3.2.31-brightgreen)
 
 一个 Vue3 数字滚动组件，[demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
