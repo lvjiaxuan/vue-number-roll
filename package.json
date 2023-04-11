@@ -5,10 +5,18 @@
   "private": false,
   "author": "lvjiaxuan <471501748@qq.com> (https://github.com/lvjiaxuan)",
   "license": "MIT",
-  "keywords": ["vue", "number-roll", "vue2", "vue3", "vue-demi"],
+  "keywords": [
+    "vue",
+    "number-roll",
+    "vue2",
+    "vue3",
+    "vue-demi"
+  ],
   "main": "./dist/vue-number-roll.umd.cjs",
   "module": "./dist/vue-number-roll.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -39,6 +47,7 @@
     "eslint": "^8.38.0",
     "eslint-plugin-vue": "^9.10.0",
     "npm-run-all": "^4.1.5",
+    "sass": "^1.61.0",
     "typescript": "~5.0.4",
     "vite": "^4.2.1",
     "vue": "^3.2.47",
