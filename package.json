@@ -1,13 +1,20 @@
 {
-  "name": "vite-project",
+  "name": "vue-number-roll",
   "type": "module",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "author": "lvjiaxuan <471501748@qq.com> (https://github.com/lvjiaxuan)",
+  "license": "MIT",
+  "keywords": ["vue", "number-roll", "vue2", "vue3", "vue-demi"],
+  "main": "./dist/vue-number-roll.umd.cjs",
+  "module": "./dist/vue-number-roll.js",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
+    "build-only:lib": "vite build -c=vite.config.lib.ts",
     "type-check": "vue-tsc --noEmit",
     "lint": "nlx cross-env ESLINT_USE_FLAT_CONFIG=true eslint ."
   },
