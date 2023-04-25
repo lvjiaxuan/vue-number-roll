@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import NumberRoll from './NumberRoll.vue'
-import { computed, reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
 /**
  * data
  */
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
+type OptionsType = Partial<Record<
+  keyof InstanceType<typeof NumberRoll>['$props'],
+  { value: number, type: 'number' }
+    | { value: string, type: 'text' }
+    | { value: boolean, type: 'checkbox' }
+>>
 const options = reactive({
-  startNumber: {
+  start: {
     value: 123,
     type: 'number',
   },
-  endNumber: {
+  end: {
     value: 9876,
     type: 'number',
   },
@@ -27,175 +33,143 @@ const options = reactive({
     value: 'ease-in-out',
     type: 'text',
   },
-  minLength: {
+  zeroStart: {
     value: 5,
     type: 'number',
   },
-  rollHeight: {
+  itemHeightWithUnit: {
     value: '120px',
     type: 'text',
   },
-  reverseDirection: {
+  reverseRollDirection: {
     value: false,
     type: 'checkbox',
   },
-  autoplay: {
+  immediate: {
     value: false,
     type: 'checkbox',
   },
 })
 
-const htmlCode = computed(
-  () => `<number-roll
-    startNumber="${ options.startNumber.value }"
-    endNumber="${ options.endNumber.value }"
-    min-length="${ options.minLength.value }"
-    roll-height="${ options.rollHeight.value }"
-    transition-delay="${ options.transitionDelay.value }"
-    transition-duration="${ options.transitionDuration.value }"
-    transition-time-function="${ options.transitionTimingFunction.value }"
-    number-class="num-item"
-    ${ options.autoplay.value ? 'autoplay' : '' }
-    ${ options.reverseDirection.value ? 'reverse-irection' : '' } />`,
-)
-
 watch(
-  () => options.autoplay.value,
-  newValue => sessionStorage.setItem('autoplay', newValue.toString()),
+  () => options.immediate.value,
+  newValue => sessionStorage.setItem('immediate', (!!newValue).toString()),
 )
 
-options.autoplay.value = sessionStorage.getItem('autoplay') === 'true'
-
-const go = () => {
-  numberRollRef.value.start()
-}
-
-const reset = () => {
-  // @ts-ignore
-  numberRollRef.value.reset()
-}
+options.immediate.value = sessionStorage.getItem('immediate') === 'true'
 </script>
 
 <template>
-  <main>
-    <h1 class="title">
-      vue-number-roll
+  <main
+    m="xa y0"
+    w-250
+  >
+    <h1 text="~ center purple-800 6xl">
+      <a
+        href="https://github.com/lvjiaxuan/vue-number-roll"
+        target="_blank"
+        rel="noopener noreferrer"
+        decoration-none
+        italic
+      >vue-number-roll</a>
+      <sub text="0.35em">
+        under
+        <a
+          href="https://github.com/vueuse/vue-demi"
+          target="_blank"
+          rel="noopener noreferrer"
+          decoration-none
+          italic
+        >
+          vue-demi
+        </a>
+      </sub>
     </h1>
 
-    <section class="container">
+    <section
+      text-center
+      mb5
+    >
       <number-roll
         ref="numberRollRef"
-        :start-number="options.startNumber.value"
-        :end-number="options.endNumber.value"
-        :min-length="options.minLength.value"
-        :roll-height="options.rollHeight.value"
+        :start="options.start!.value"
+        :end="options.end!.value"
+        :zero-start="options.zeroStart.value"
+        :item-height-with-unit="options.itemHeightWithUnit.value"
         :transition-delay="options.transitionDelay.value"
         :transition-duration="options.transitionDuration.value"
         :transition-time-function="options.transitionTimingFunction.value"
-        :autoplay="options.autoplay.value"
-        :reverse-direction="options.reverseDirection.value"
-        number-class="num-item"
+        :immediate="options.immediate.value"
+        :reverse-roll-direction="options.reverseRollDirection.value"
+        item-class="num-item"
       />
     </section>
 
-    <section class="options">
+    <section
+      flex="~ wrap justify-center"
+      my5
+    >
       <label
         v-for="(value, key) in options"
         :key="key"
+        inline-block
+        m="x3 y3"
+        flex="~ items-center"
         :for="key"
       >
-        {{ key }}:<input
+        {{ key }}&nbsp;&nbsp;<input
           :id="key"
           v-model="value.value"
           :type="value.type"
+          class="[&[type=(number text)]]:(inline-block
+            py-2
+            px-1.5
+            w-20
+            h-5
+            text-base
+            c-neutral-950
+            b-#d9d9d9
+            b-solid
+            b
+            rd
+            transition-all
+            duration-30
+          ) [&[type=checkbox]]:(m-0 w-4 h-4)"
         >
       </label>
     </section>
 
-    <button @click="go">
-      Let's roll
-    </button>
-    <button @click="reset">
-      Reset
-    </button>
-
-    <code>{{ htmlCode }}</code>
+    <div flex="~ justify-between">
+      <button
+        class="btn"
+        @click="numberRollRef!.roll"
+      >
+        Let's roll
+      </button>
+      <button
+        class="btn"
+        @click="numberRollRef!.reset"
+      >
+        Reset
+      </button>
+    </div>
 
     <code class="css-style">
       .num-item { border-radius: 8px; width: 100px; margin: 10px; background: linear-gradient(0deg, rgba(100, 184, 255,
-      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }</code>
+      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }
+    </code>
   </main>
 </template>
 
 <style lang="scss">
-main {
-  width: 720px;
-  margin: 0 auto;
+.btn {
+  @apply m-1 c-dark font-bold text-center touch-manipulation
+    flex-auto
+    cursor-pointer bg-none b b-solid b-transparent
+    ws-nowrap lh-normal py3 text-lg rounded select-none
+    hover:(c-rose bg-pink-200)
 }
-.title {
-  text-align: center;
-  color: #5026a7;
-  font-size: 60px;
-}
-.container {
-  text-align: center;
-}
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px 0;
-  label {
-    display: inline-block;
-    margin: 15px 30px 15px 0;
-  }
-  input[type='text'],
-  input[type='number'] {
-    display: inline-block;
-    padding: 4px 7px;
-    width: 70px;
-    height: 25px;
-    cursor: text;
-    font-size: 12px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.65);
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    transition: all 0.3s;
-  }
-  input[type='checkbox'] {
-    margin: 0;
-    width: 25px;
-    height: 25px;
-  }
-}
-button {
-  margin-top: 10px;
-  color: #470938;
-  width: 100%;
-  margin-bottom: 0;
-  font-weight: 500;
-  text-align: center;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  line-height: 1.5;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 4px;
-  user-select: none;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  background-color: #fff;
-  border-color: #d9d9d9;
-  &:hover {
-    color: #1a3e59;
-    background-color: #f2d6eb;
-  }
-}
+
 code {
   margin-top: 25px;
   display: block;
@@ -217,5 +191,6 @@ code {
   background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
   font-size: 80px;
   color: #fff;
+  height: 120px;
 }
 </style>

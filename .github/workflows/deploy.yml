@@ -7,7 +7,7 @@ on:
   #   branches: ['vue-demi']
 
   # 这个选项可以使你手动在 Action tab 页面触发工作流
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
 permissions:
@@ -17,7 +17,7 @@ permissions:
 
 # 允许一个并发的部署
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-      
+          cache: npm
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          path: './dist'
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment

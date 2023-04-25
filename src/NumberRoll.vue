@@ -2,123 +2,115 @@
 import { computed, onMounted, ref, toRefs, watch } from 'vue'
 
 const props = defineProps({
-  startNumber: {
+  start: {
     type: [ Number, String ],
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
-  endNumber: {
+  end: {
     type: [ Number, String ],
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
-  minLength: {
+  zeroStart: {
     type: [ Number, String ],
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
-  rollHeight: {
+  itemHeightWithUnit: {
     type: String,
     required: true,
   },
-  reverseDirection: {
+  reverseRollDirection: {
     type: Boolean,
     default: false,
   },
-  autoplay: {
+  immediate: {
     type: Boolean,
     default: false,
   },
-  numberClass: {
+  itemClass: {
     type: String,
     default: '',
   },
   transitionDuration: {
     type: [ Number, String ],
     default: 3000,
-    validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
   transitionTimingFunction: {
     type: String,
     default: 'ease-in-out',
-    validator: (value: string) =>
-      [ 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out' ].includes(value) || value.includes('cubic-bezier'),
   },
   transitionDelay: {
     type: [ Number, String ],
     default: 0,
-    validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
 })
 
 
-const splitNumbers = ref<{ transform: string }[]>([])
+const itemTranslateYs = ref<{ transform: string }[]>([])
 function init() {
-  splitNumbers.value.length = 0
-  props.startNumber
+  itemTranslateYs.value.length = 0
+  props.start
     .toString()
-    .padStart(+props.minLength, '0')
+    .padStart(+props.zeroStart, '0')
     .split('')
-    .forEach((number, idx) => setSingleTranslate(idx, +number))
+    .forEach((number, idx) => setItemTranslateY(idx, +number))
 }
 
 
-const endNumberPadding = computed(() => props.endNumber.toString().padStart(+props.minLength, '0'))
-function start() {
-  splitNumbers.value.length = 0
-  endNumberPadding.value.split('').forEach((number, idx) => setSingleTranslate(idx, +number))
+const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.zeroStart, '0'))
+function roll() {
+  itemTranslateYs.value.length = 0
+  endNumberWithPadding.value.split('').forEach((number, idx) => setItemTranslateY(idx, +number))
 }
 
-const rollHeightUnit = computed(() => props.rollHeight.replace(/\d/g, ''))
-const rollHeightNumber = computed(() => +props.rollHeight.replace(new RegExp(rollHeightUnit.value, 'g'), ''))
-function setSingleTranslate(idx: number, number: number) {
-  splitNumbers.value[idx] = {
+
+const itemHeightUnit = computed(() => props.itemHeightWithUnit.replace(/\d/g, ''))
+const itemHeightNumber = computed(() => +props.itemHeightWithUnit.replace(new RegExp(itemHeightUnit.value, 'gi'), ''))
+function setItemTranslateY(idx: number, number: number) {
+  itemTranslateYs.value[idx] = {
     transform: `translateY(${
-      (props.reverseDirection ? (+number - 9) * rollHeightNumber.value : -number * rollHeightNumber.value) +
-      rollHeightUnit.value
+      (props.reverseRollDirection ? (+number - 9) * itemHeightNumber.value : -number * itemHeightNumber.value) +
+      itemHeightUnit.value
     })`,
   }
 }
 
-/**
- * watch
- */
-watch([ () => props.startNumber, () => props.rollHeight, () => props.minLength, () => props.reverseDirection ], init, { immediate: true })
 
-/**
- * life cycle
- */
-onMounted(() => props.autoplay && window.requestAnimationFrame(start))
+watch([
+  () => props.start,
+  () => props.itemHeightWithUnit,
+  () => props.zeroStart,
+  () => props.reverseRollDirection,
+], init, { immediate: true })
 
-/**
- * expose
- */
-defineExpose({ start, reset: init })
+// 不能 dom 渲染好的第一帧就重置 transform
+onMounted(() => props.immediate && window.requestAnimationFrame(roll))
+
+defineExpose({ roll, reset: init })
 </script>
 
 <template>
-  <ul
-    class="base-num-roll"
-    :style="{ height: rollHeight }"
-  >
+  <ul class="number-roll-reset">
     <li
-      v-for="index in splitNumbers.length"
+      v-for="index in itemTranslateYs.length"
       :key="index"
-      :class="numberClass"
+      :class="itemClass"
     >
       <div
         :style="[
-          splitNumbers[index - 1],
-          { 'transition-duration': +transitionDuration / 1000 + 's' },
+          itemTranslateYs[index - 1],
+          { 'transition-duration': transitionDuration.toString() },
           { 'transition-timing-function': transitionTimingFunction },
         ]"
       >
         <p
           v-for="n in 10"
           :key="n"
-          :style="{ height: rollHeight }"
+          :style="{ height: itemHeightWithUnit }"
         >
-          {{ reverseDirection ? 10 - n : n - 1 }}
+          {{ reverseRollDirection ? 10 - n : n - 1 }}
         </p>
       </div>
     </li>
@@ -126,24 +118,12 @@ defineExpose({ start, reset: init })
 </template>
 
 <style lang="scss">
-.base-num-roll {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  display: inline-flex;
+.number-roll-reset {
+  @apply m0 p0 list-none overflow-hidden inline-flex;
   li {
-    transition-property: transform;
-    box-sizing: border-box;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    @apply transition-property-transform box-border mt0 mb0;
     p {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
+      @apply m0 p0 flex-(~ justify-center items-center box-border);
     }
   }
 }

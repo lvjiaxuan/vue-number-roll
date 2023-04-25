@@ -6,4 +6,5 @@ export default [
     files: [ '**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts' ],
     languageOptions: { parserOptions: { project: [ './tsconfig.json', './tsconfig.*.json' ] } },
   },
+  { rules: { 'vue/valid-attribute-name': 0 } },
 ]
