@@ -21,21 +21,21 @@ const options = reactive({
     value: 9876,
     type: 'number',
   },
-  transitionDelay: {
-    value: 0,
+  totalLength: {
+    value: 5,
     type: 'number',
   },
+  transitionDelay: {
+    value: '0',
+    type: 'text',
+  },
   transitionDuration: {
-    value: 2555,
-    type: 'number',
+    value: '2555ms',
+    type: 'text',
   },
   transitionTimingFunction: {
     value: 'ease-in-out',
     type: 'text',
-  },
-  zeroStart: {
-    value: 5,
-    type: 'number',
   },
   itemHeightWithUnit: {
     value: '120px',
@@ -94,14 +94,14 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
         ref="numberRollRef"
         :start="options.start!.value"
         :end="options.end!.value"
-        :zero-start="options.zeroStart.value"
+        :total-length="options.totalLength.value"
         :item-height-with-unit="options.itemHeightWithUnit.value"
         :transition-delay="options.transitionDelay.value"
         :transition-duration="options.transitionDuration.value"
         :transition-time-function="options.transitionTimingFunction.value"
         :immediate="options.immediate.value"
         :reverse-roll-direction="options.reverseRollDirection.value"
-        item-class="num-item"
+        item-class="item-class"
       />
     </section>
 
@@ -155,8 +155,14 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
     </div>
 
     <code class="css-style">
-      .num-item { border-radius: 8px; width: 100px; margin: 10px; background: linear-gradient(0deg, rgba(100, 184, 255,
-      1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%); font-size: 80px; color: #fff; }
+      .item-class {
+      border-radius: 8px;
+      width: 100px;
+      margin: 10px;
+      background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
+      font-size: 80px;
+      color: #fff;
+      }
     </code>
   </main>
 </template>
@@ -179,18 +185,17 @@ code {
   border: 1px solid #e5e5e5;
   overflow-x: auto;
   color: #333;
-  font-size: 14px;
-  &.css-style {
-    white-space: pre-wrap;
-  }
+  font-size: 16px;
+  line-height: 1.5;
 }
-.num-item {
+.item-class {
   border-radius: 8px;
   width: 100px;
   margin: 10px;
   background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
   font-size: 80px;
-  color: #fff;
-  height: 120px;
+  @apply c-white;
+  // color: #fff;
+  // height: 120px;
 }
 </style>

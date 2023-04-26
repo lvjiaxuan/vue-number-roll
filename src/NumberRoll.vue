@@ -12,7 +12,7 @@ const props = defineProps({
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
-  zeroStart: {
+  totalLength: {
     type: [ Number, String ],
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
@@ -34,16 +34,16 @@ const props = defineProps({
     default: '',
   },
   transitionDuration: {
-    type: [ Number, String ],
-    default: 3000,
+    type: String,
+    default: '3s',
   },
   transitionTimingFunction: {
     type: String,
     default: 'ease-in-out',
   },
   transitionDelay: {
-    type: [ Number, String ],
-    default: 0,
+    type: String,
+    default: '0',
   },
 })
 
@@ -53,13 +53,13 @@ function init() {
   itemTranslateYs.value.length = 0
   props.start
     .toString()
-    .padStart(+props.zeroStart, '0')
+    .padStart(+props.totalLength, '0')
     .split('')
     .forEach((number, idx) => setItemTranslateY(idx, +number))
 }
 
 
-const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.zeroStart, '0'))
+const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.totalLength, '0'))
 function roll() {
   itemTranslateYs.value.length = 0
   endNumberWithPadding.value.split('').forEach((number, idx) => setItemTranslateY(idx, +number))
@@ -81,12 +81,12 @@ function setItemTranslateY(idx: number, number: number) {
 watch([
   () => props.start,
   () => props.itemHeightWithUnit,
-  () => props.zeroStart,
+  () => props.totalLength,
   () => props.reverseRollDirection,
 ], init, { immediate: true })
 
-// 不能 dom 渲染好的第一帧就重置 transform
-onMounted(() => props.immediate && window.requestAnimationFrame(roll))
+// 不能 dom 渲染好的第一帧就重置 transform，我也不知道第二帧为什么不行
+onMounted(() => props.immediate && window.requestAnimationFrame(() => window.requestAnimationFrame(roll)))
 
 defineExpose({ roll, reset: init })
 </script>
@@ -97,12 +97,14 @@ defineExpose({ roll, reset: init })
       v-for="index in itemTranslateYs.length"
       :key="index"
       :class="itemClass"
+      :style="{ height: itemHeightWithUnit }"
     >
       <div
         :style="[
           itemTranslateYs[index - 1],
-          { 'transition-duration': transitionDuration.toString() },
+          { 'transition-duration': transitionDuration },
           { 'transition-timing-function': transitionTimingFunction },
+          { 'transition-delay': transitionDelay }
         ]"
       >
         <p
