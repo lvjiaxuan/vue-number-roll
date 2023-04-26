@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import NumberRoll from './NumberRoll.vue'
-import { reactive, ref, watch } from 'vue-demi'
+import { reactive, ref, version, watch } from 'vue-demi'
 
-/**
- * data
- */
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
 type OptionsType = Partial<Record<
   keyof InstanceType<typeof NumberRoll>['$props'],
@@ -164,6 +161,10 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
       color: #fff;
       }
     </code>
+
+    <p text-center>
+      Vue version: {{ version }}
+    </p>
   </main>
 </template>
 
