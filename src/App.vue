@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NumberRoll from './NumberRoll.vue'
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue-demi'
 
 /**
  * data
