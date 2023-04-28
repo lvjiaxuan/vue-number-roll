@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NumberRoll from './NumberRoll.vue'
-import { reactive, ref, version, watch } from 'vue-demi'
+import NumberRoll from './../../lib/NumberRoll.vue'
+import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
 type OptionsType = Partial<Record<

@@ -1,6 +1,6 @@
-import { createApp } from 'vue-demi'
+import Vue from 'vue'
 import App from './App.vue'
 import 'virtual:uno.css'
 import '@unocss/reset/normalize.css'
 
-createApp(App).mount('#app')
+new Vue({ render: h => h(App) }).$mount('#app')
