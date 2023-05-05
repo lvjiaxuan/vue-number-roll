@@ -5,6 +5,10 @@
   "private": false,
   "author": "lvjiaxuan <471501748@qq.com> (https://github.com/lvjiaxuan)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lvjiaxuan/vue-number-roll"
+  },
   "keywords": [
     "vue",
     "vue2",
@@ -14,23 +18,18 @@
   ],
   "main": "./dist/vue-number-roll.umd.cjs",
   "module": "./dist/vue-number-roll.js",
+  "types": "./dist/NumberRoll.vue.d.ts",
   "files": [
-    "dist"
+    "lib"
   ],
   "scripts": {
+    "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "build-only:lib": "vite build -c=vite.config.lib.ts",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint .",
-    "i": "ni & ni -C=playgrounds/vue2 & ni -C=playgrounds/vue3",
-    "dev": "vite",
-    "3": "vue-demi-switch 3",
-    "dev3": "nr 3 && vite --mode=3",
-    "2": "vue-demi-switch 2 vue2",
-    "dev2": "nr 2 && vite --mode=2",
-    "f": "vue-demi-fix"
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.1",
@@ -43,28 +42,23 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.51.8",
-    "@vueuse/core": "^10.1.0",
+    "@vueuse/core": "^10.1.2",
     "vue-demi": "^0.14.0"
   },
   "devDependencies": {
     "@lvjiaxuan/eslint-plugin": "^0.12.0",
-    "@types/node": "^18.16.1",
+    "@types/node": "^18.16.3",
     "@vitejs/plugin-vue": "^4.2.1",
-    "@vitejs/plugin-vue2": "^2.2.0",
-    "@vue/composition-api": "^1.7.1",
     "@vue/tsconfig": "^0.3.2",
     "eslint": "^8.39.0",
-    "eslint-plugin-vue": "^9.11.0",
-    "magic-string": "^0.30.0",
     "npm-run-all": "^4.1.5",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
     "unocss": "^0.51.8",
     "unocss-transformer-attribute-values-group": "^0.1.5",
-    "vite": "^4.3.3",
-    "vite-plugin-vue2": "^2.0.3",
+    "vite": "^4.3.4",
+    "vite-plugin-dts": "^2.3.0",
     "vue": "^3.2.47",
-    "vue-tsc": "^1.6.0",
-    "vue2": "npm:vue@~2.7.14"
+    "vue-tsc": "^1.6.4"
   }
 }

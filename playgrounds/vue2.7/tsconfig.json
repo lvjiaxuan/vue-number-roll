@@ -1,6 +1,0 @@
-{
-  "extends": "./../../tsconfig.json",
-  "vueCompilerOptions": {
-    "target": 2.7
-  }
-}
