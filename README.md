@@ -1,8 +1,8 @@
 # vue-number-roll
 
-[![](https://img.shields.io/npm/v/vue3-number-roll?color=a1b858&label=npm)](https://www.npmjs.com/package/vue3-number-roll)
-![](https://img.shields.io/badge/support-vue%202%2F3-brightgreen)
-![](https://img.shields.io/npm/dependency-version/vue-number-roll/dev/vue-demi)
+[![](https://img.shields.io/npm/v/vue-number-roll?color=a1b858&label=npm)](https://www.npmjs.com/package/vue-number-roll)
+![](https://img.shields.io/badge/supports-vue%202%2F3-brightgreen)
+[![](https://img.shields.io/npm/dependency-version/vue-number-roll/vue-demi)](https://github.com/vueuse/vue-demi)
 
 [Demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
 
@@ -85,4 +85,4 @@ defineExpose({ roll, reset: init })
 
 > **Warning**
 > 
-> I have no more edge case consideration, so use at your discretion. And PR welcome.
+> I have no more edge cases consideration, so use at your discretion. And PR welcome.
