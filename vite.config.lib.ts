@@ -13,8 +13,8 @@ export default mergeConfig(base, {
       name: 'NumberRoll',
     },
     rollupOptions: {
-      external: [ 'vue', 'vue-demi' ],
-      output: { globals: { vue: 'Vue' } },
+      external: [ 'vue-demi' ],
+      output: { globals: { vueDemo: 'vue-demi' } },
     },
   },
   plugins: [
