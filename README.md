@@ -82,8 +82,6 @@ const props = defineProps({
 defineExpose({ roll, reset: init })
 ```
 
-***
-
 > **Warning**
 > 
 > I have no more edge cases consideration, so use at your discretion. And PR welcome.

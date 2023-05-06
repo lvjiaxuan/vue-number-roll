@@ -7,7 +7,7 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'vue-number-roll',
+  base: '/vue-number-roll',
   plugins: [
     vue(),
     UnoCSS({
