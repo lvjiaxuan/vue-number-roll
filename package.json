@@ -1,7 +1,7 @@
 {
   "name": "vue-number-roll",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": false,
   "author": "lvjiaxuan <471501748@qq.com> (https://github.com/lvjiaxuan)",
   "license": "MIT",
@@ -13,12 +13,13 @@
     "vue",
     "vue2",
     "vue3",
-    "number-roll",
+    "vue2/3",
+    "vue-number-roll",
     "vue-demi"
   ],
-  "main": "./dist/vue-number-roll.umd.cjs",
-  "module": "./dist/vue-number-roll.js",
-  "types": "./dist/NumberRoll.vue.d.ts",
+  "main": "./lib/vue-number-roll.umd.cjs",
+  "module": "./lib/vue-number-roll.js",
+  "types": "./lib/vue-number-roll.d.ts",
   "files": [
     "lib"
   ],
@@ -27,9 +28,11 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
-    "build-only:lib": "vite build -c=vite.config.lib.ts",
+    "build:lib": "vite build -c=vite.config.lib.ts",
+    "prepublishOnly": "nr build:lib",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "r": "lvr --no-push"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.1",
