@@ -1,10 +1,6 @@
 import lvjiaxuan from '@lvjiaxuan/eslint-plugin/flat'
 
 export default [
+  { ignores: [ 'lib/*' ] },
   ...lvjiaxuan.configs.recommended,
-  {
-    files: [ '**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts' ],
-    languageOptions: { parserOptions: { project: [ './tsconfig.json', './tsconfig.*.json' ] } },
-  },
-  { rules: { 'vue/valid-attribute-name': 0 } },
 ]

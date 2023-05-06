@@ -15,6 +15,7 @@ npm i vue-number-roll
 
 ## Props
 
+<!-- eslint-skip -->
 ```ts
 const props = defineProps({
   start: {

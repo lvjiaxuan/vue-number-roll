@@ -1,9 +1,6 @@
 {
-  "extends": [
-    "@vue/tsconfig/tsconfig.json",
-    "@vue/tsconfig/tsconfig.dom.json"
-  ],
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "playgrounds/**/*", "playgrounds/**/*.vue"],
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "baseUrl": ".",

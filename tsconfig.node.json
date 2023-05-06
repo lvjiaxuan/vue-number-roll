@@ -1,6 +1,6 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
-  "include": ["vite.config.*", "playgrounds/**/vite.config.*", "package.json"],
+  "extends": "./tsconfig.json",
+  "include": ["vite.config.*", "package.json"],
   "compilerOptions": {
     "composite": true,
     "types": ["node18"]
