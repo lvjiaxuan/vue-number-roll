@@ -1,4 +1,4 @@
-import { mergeConfig } from 'vite'
+import { type UserConfig, mergeConfig } from 'vite'
 import base from './vite.config'
 import path from 'node:path'
 import dts from 'vite-plugin-dts'
@@ -9,13 +9,10 @@ export default mergeConfig(base, {
   build: {
     outDir: 'lib',
     lib: {
-      entry: path.resolve(__dirname, './src/NumberRoll.vue'),
+      entry: path.resolve(__dirname, './src/NumberRoll.ts'),
       name: 'NumberRoll',
     },
-    rollupOptions: {
-      external: [ 'vue-demi' ],
-      output: { globals: { vueDemo: 'vue-demi' } },
-    },
+    rollupOptions: { external: [ 'vue-demi' ] },
   },
   plugins: [
     dts({
@@ -24,4 +21,4 @@ export default mergeConfig(base, {
       },
     }),
   ],
-})
+} as UserConfig)
