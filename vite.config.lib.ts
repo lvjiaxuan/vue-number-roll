@@ -5,6 +5,7 @@ import dts from 'vite-plugin-dts'
 import pkg from './package.json' assert { type: 'json' }
 
 export default mergeConfig(base, {
+  base: '/vue-number-roll',
   publicDir: false,
   build: {
     outDir: 'lib',
@@ -12,7 +13,7 @@ export default mergeConfig(base, {
       entry: path.resolve(__dirname, './src/NumberRoll.ts'),
       name: 'NumberRoll',
     },
-    rollupOptions: { external: [ 'vue-demi' ] },
+    rollupOptions: { external: [ 'vue' ] },
   },
   plugins: [
     dts({
