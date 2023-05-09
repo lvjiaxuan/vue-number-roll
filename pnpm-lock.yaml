@@ -9,10 +9,10 @@ dependencies:
     version: 1.7.1(vue@3.2.47)
   '@vueuse/core':
     specifier: ^10.1.2
-    version: 10.1.2(@vue/composition-api@1.7.1)(vue@3.2.47)
+    version: 10.1.2(vue@3.2.47)
   vue-demi:
     specifier: ^0.14.0
-    version: 0.14.0(@vue/composition-api@1.7.1)(vue@3.2.47)
+    version: 0.14.0(vue@3.2.47)
 
 devDependencies:
   '@lvjiaxuan/eslint-plugin':
@@ -48,6 +48,9 @@ devDependencies:
   vite:
     specifier: ^4.3.5
     version: 4.3.5(@types/node@20.1.1)(sass@1.62.1)
+  vite-plugin-css-injected-by-js:
+    specifier: ^3.1.1
+    version: 3.1.1(vite@4.3.5)
   vite-plugin-dts:
     specifier: ^2.3.0
     version: 2.3.0(@types/node@20.1.1)(vite@4.3.5)
@@ -1193,15 +1196,14 @@ packages:
     resolution: {integrity: sha512-jWzZbGyrZAEbHYGn0kPzJ+MMtIkIxb0+hL5+RghBowyOxMRs9jMdp5XvpXz3wgCzjRZiUucy29042HBe9cxoYA==}
     dev: true
 
-  /@vueuse/core@10.1.2(@vue/composition-api@1.7.1)(vue@3.2.47):
+  /@vueuse/core@10.1.2(vue@3.2.47):
     resolution: {integrity: sha512-roNn8WuerI56A5uiTyF/TEYX0Y+VKlhZAF94unUfdhbDUI+NfwQMn4FUnUscIRUhv3344qvAghopU4bzLPNFlA==}
     dependencies:
       '@types/web-bluetooth': 0.0.17
       '@vueuse/metadata': 10.1.2
-      '@vueuse/shared': 10.1.2(@vue/composition-api@1.7.1)(vue@3.2.47)
-      vue-demi: 0.14.0(@vue/composition-api@1.7.1)(vue@3.2.47)
+      '@vueuse/shared': 10.1.2(vue@3.2.47)
+      vue-demi: 0.14.0(vue@3.2.47)
     transitivePeerDependencies:
-      - '@vue/composition-api'
       - vue
     dev: false
 
@@ -1209,12 +1211,11 @@ packages:
     resolution: {integrity: sha512-3mc5BqN9aU2SqBeBuWE7ne4OtXHoHKggNgxZR2K+zIW4YLsy6xoZ4/9vErQs6tvoKDX6QAqm3lvsrv0mczAwIQ==}
     dev: false
 
-  /@vueuse/shared@10.1.2(@vue/composition-api@1.7.1)(vue@3.2.47):
+  /@vueuse/shared@10.1.2(vue@3.2.47):
     resolution: {integrity: sha512-1uoUTPBlgyscK9v6ScGeVYDDzlPSFXBlxuK7SfrDGyUTBiznb3mNceqhwvZHjtDRELZEN79V5uWPTF1VDV8svA==}
     dependencies:
-      vue-demi: 0.14.0(@vue/composition-api@1.7.1)(vue@3.2.47)
+      vue-demi: 0.14.0(vue@3.2.47)
     transitivePeerDependencies:
-      - '@vue/composition-api'
       - vue
     dev: false
 
@@ -3260,6 +3261,14 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
+  /vite-plugin-css-injected-by-js@3.1.1(vite@4.3.5):
+    resolution: {integrity: sha512-mwrFvEEy0TuH8Ul0cb2HgjmNboQ/JnEFy+kHCWqAJph3ikMOiIuyYVdx0JO4nEIWJyzSnc4TTdmoTulsikvJEg==}
+    peerDependencies:
+      vite: '>2.0.0-0'
+    dependencies:
+      vite: 4.3.5(@types/node@20.1.1)(sass@1.62.1)
+    dev: true
+
   /vite-plugin-dts@2.3.0(@types/node@20.1.1)(vite@4.3.5):
     resolution: {integrity: sha512-WbJgGtsStgQhdm3EosYmIdTGbag5YQpZ3HXWUAPCDyoXI5qN6EY0V7NXq0lAmnv9hVQsvh0htbYcg0Or5Db9JQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -3317,7 +3326,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vue-demi@0.14.0(@vue/composition-api@1.7.1)(vue@3.2.47):
+  /vue-demi@0.14.0(vue@3.2.47):
     resolution: {integrity: sha512-gt58r2ogsNQeVoQ3EhoUAvUsH9xviydl0dWJj7dabBC/2L4uBId7ujtCwDRD0JhkGsV1i0CtfLAeyYKBht9oWg==}
     engines: {node: '>=12'}
     hasBin: true
@@ -3329,7 +3338,6 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@vue/composition-api': 1.7.1(vue@3.2.47)
       vue: 3.2.47
     dev: false
 
