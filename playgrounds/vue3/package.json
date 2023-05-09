@@ -1,0 +1,28 @@
+{
+  "name": "vue3",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@unocss/reset": "^0.51.12",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^2.0.0",
+    "@types/node": "^20.1.1",
+    "@vitejs/plugin-vue": "^4.2.1",
+    "@vue/tsconfig": "^0.3.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "~5.0.4",
+    "unocss": "^0.51.12",
+    "vite": "^4.3.5",
+    "vue-number-roll": "link:./../../",
+    "vue-tsc": "^1.6.4"
+  }
+}
