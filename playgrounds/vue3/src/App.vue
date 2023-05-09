@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-ignore
 import NumberRoll from 'vue-number-roll'
 import { reactive, ref, version, watch } from 'vue'
 

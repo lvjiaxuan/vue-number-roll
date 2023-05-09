@@ -32,7 +32,9 @@
     "prepublishOnly": "nr build:lib",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint .",
-    "r": "lvr --no-push"
+    "r": "lvr --no-push",
+    "2": "vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && nr dev",
+    "3": "vue-demi-switch 3 && cd playgrounds/vue3 && nr dev"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.1",
@@ -63,6 +65,7 @@
     "vite-plugin-css-injected-by-js": "^3.1.1",
     "vite-plugin-dts": "^2.3.0",
     "vue": "^3.2.47",
+    "vue2": "npm:vue@2.7.14",
     "vue-tsc": "^1.6.4"
   }
 }
