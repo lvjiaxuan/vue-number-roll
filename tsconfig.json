@@ -3,10 +3,6 @@
   "include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "playgrounds/**/*.ts", "playgrounds/**/*.vue"],
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
   },
   "references": [
     {

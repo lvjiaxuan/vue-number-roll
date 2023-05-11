@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["vite.config.ts", "package.json", "playgrounds/**/vite.config.ts"],
+  "include": ["uno.config.ts", "playgrounds/**/vite.config.ts"],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",

@@ -104,10 +104,21 @@ defineExpose({ roll, reset: init })
 </script>
 
 <template>
-  <ul class="number-roll-reset">
+  <ul
+    m0
+    p0
+    list-none
+    overflow-hidden
+    inline-flex
+    class="number-roll-reset"
+  >
     <li
       v-for="index in itemTranslateYs.length"
       :key="index"
+      transition-property-transform
+      box-border
+      mt0
+      mb0
       :class="itemClass"
       :style="{ height: itemHeightWithUnit }"
     >
@@ -122,6 +133,9 @@ defineExpose({ roll, reset: init })
         <p
           v-for="n in 10"
           :key="n"
+          m0
+          p0
+          flex="~ justify-center items-center box-border"
           :style="{ height: itemHeightWithUnit }"
         >
           {{ reverseRollDirection ? 10 - n : n - 1 }}
@@ -132,13 +146,13 @@ defineExpose({ roll, reset: init })
 </template>
 
 <style lang="scss">
-.number-roll-reset {
-  @apply m0 p0 list-none overflow-hidden inline-flex;
-  li {
-    @apply transition-property-transform box-border mt0 mb0;
-    p {
-      @apply m0 p0 flex-(~ justify-center items-center box-border);
-    }
-  }
-}
+// .number-roll-reset {
+//   @apply m0 p0 list-none overflow-hidden inline-flex;
+//   li {
+//     @apply transition-property-transform box-border mt0 mb0;
+//     p {
+//       @apply m0 p0 flex-(~ justify-center items-center box-border);
+//     }
+//   }
+// }
 </style>
