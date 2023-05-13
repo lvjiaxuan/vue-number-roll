@@ -34,8 +34,7 @@
     "u": "unocss src/h.ts -o=dist/index.css",
     "dev2": "vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && nr dev",
     "dev3": "vue-demi-switch 3 && cd playgrounds/vue3 && nr dev",
-    "build": "nlx unbuild && nr u",
-    "postinstall": "node ./scripts/injectCSS.mjs",
+    "build": "nlx unbuild && (nr u & node ./scripts/injectCSS.mjs)",
     "prepublishOnly": "nr build",
     "lint": "eslint .",
     "r": "lvr --no-push"

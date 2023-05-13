@@ -17,7 +17,7 @@ npm i vue-number-roll
 
 <!-- eslint-skip -->
 ```ts
-const props = defineProps({
+props: {
   start: {
     // The start number.
     type: [ Number, String ],
@@ -73,14 +73,20 @@ const props = defineProps({
     type: String,
     default: '0',
   },
-})
+}
 ```
 
 ## Expose
 
 ```ts
-defineExpose({ roll, reset: init })
+expose({ roll, reset: init })
 ```
+
+## Development
+
+1. Edit Code.
+2. `pnpm build` (I haven't found a watch mode yet).
+3. `pnpm dev3` or `pnpm dev2`.
 
 > **Warning**
 > 
