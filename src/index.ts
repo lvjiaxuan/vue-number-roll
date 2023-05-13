@@ -1,4 +1,3 @@
-import 'virtual:uno.css'
 import {
   computed,
   defineComponent,
@@ -69,6 +68,15 @@ export default defineComponent({
     },
   },
 
+  methods: {
+    roll() {
+      // ...
+    },
+    reset() {
+      // ...
+    },
+  },
+
   setup(props, { expose }) {
     const itemTranslateYs = ref<{ transform: string }[]>([])
     function init() {
@@ -111,6 +119,7 @@ export default defineComponent({
     // 不能 dom 渲染好的第一帧就重置 transform，我也不知道第二帧为什么不行
     onMounted(() => props.immediate && window.requestAnimationFrame(() => window.requestAnimationFrame(roll)))
 
+    // These two methods were set at methods, working as an alias, for the lack of Intellisense.
     expose({ roll, reset: init })
 
     return () => h(

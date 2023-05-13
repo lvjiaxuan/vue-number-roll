@@ -3,12 +3,6 @@ import NumberRoll from 'vue-number-roll'
 import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
-type OptionsType = Partial<Record<
-  keyof InstanceType<typeof NumberRoll>['$props'],
-  { value: number, type: 'number' }
-    | { value: string, type: 'text' }
-    | { value: boolean, type: 'checkbox' }
->>
 const options = reactive({
   start: {
     value: 123,

@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import { URL, fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { defineConfig } from 'vite'
@@ -10,12 +10,8 @@ export default defineConfig({
     vue(),
     UnoCSS({
       presets: [ presetAttributify(), presetUno() ],
-      transformers: [  transformerVariantGroup(), transformerDirectives() ],
-    })
+      transformers: [ transformerVariantGroup(), transformerDirectives() ],
+    }),
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
 })

@@ -17,22 +17,26 @@
     "vue-number-roll",
     "vue-demi"
   ],
-  "main": "./lib/vue-number-roll.umd.cjs",
-  "module": "./lib/vue-number-roll.js",
-  "types": "./lib/vue-number-roll.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
+    "u": "unocss src/h.ts -o=dist/index.css",
     "dev2": "vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && nr dev",
     "dev3": "vue-demi-switch 3 && cd playgrounds/vue3 && nr dev",
-    "dev": "vite",
-    "build": "run-p type-check build-only",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "build:lib": "vite build -c=vite.config.lib.ts",
-    "prepublishOnly": "nr build:lib",
-    "type-check": "vue-tsc --noEmit",
+    "build": "nlx unbuild && nr u",
+    "postinstall": "node ./scripts/injectCSS.mjs",
+    "prepublishOnly": "nr build",
     "lint": "eslint .",
     "r": "lvr --no-push"
   },
@@ -53,12 +57,12 @@
     "@lvjiaxuan/eslint-plugin": "^0.12.0",
     "@tsconfig/node18": "^2.0.0",
     "@types/node": "^20.1.2",
+    "@unocss/cli": "^0.51.12",
     "@vue/tsconfig": "^0.3.2",
+    "esbuild": "^0.17.19",
     "eslint": "^8.40.0",
-    "npm-run-all": "^4.1.5",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
-    "unbuild": "^1.2.1",
     "unocss": "^0.51.12",
     "unocss-transformer-attribute-values-group": "^0.2.1",
     "vue": "^3.3.1",
