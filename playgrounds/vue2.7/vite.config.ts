@@ -1,10 +1,9 @@
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue2'
 import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
