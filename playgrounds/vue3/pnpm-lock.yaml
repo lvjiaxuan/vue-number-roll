@@ -9,9 +9,6 @@ dependencies:
     version: 3.3.2
 
 devDependencies:
-  '@tsconfig/node18':
-    specifier: ^2.0.1
-    version: 2.0.1
   '@types/node':
     specifier: ^20.1.5
     version: 20.1.5
@@ -373,10 +370,6 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
-    dev: true
-
-  /@tsconfig/node18@2.0.1:
-    resolution: {integrity: sha512-UqdfvuJK0SArA2CxhKWwwAWfnVSXiYe63bVpMutc27vpngCntGUZQETO24pEJ46zU6XM+7SpqYoMgcO3bM11Ew==}
     dev: true
 
   /@types/estree@1.0.1:

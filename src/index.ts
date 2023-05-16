@@ -99,13 +99,7 @@ export default defineComponent({
     const itemHeightUnit = computed(() => props.itemHeightWithUnit.replace(/\d/g, ''))
     const itemHeightNumber = computed(() => +props.itemHeightWithUnit.replace(new RegExp(itemHeightUnit.value, 'gi'), ''))
     function setItemTranslateY(idx: number, number: number) {
-      itemTranslateYs.value[idx] = {
-        transform: `translateY(${
-          (props.reverseRollDirection
-            ? (number - 9) * itemHeightNumber.value
-            : -number * itemHeightNumber.value).toString() + itemHeightUnit.value
-        })`,
-      }
+      itemTranslateYs.value[idx] = { transform: 'translateY(0)' }
     }
 
 
@@ -131,25 +125,27 @@ export default defineComponent({
           class: `${ props.itemClass } transition-property-transform box-border mt0 mb0`,
           style: { height: props.itemHeightWithUnit },
         },
-        h(
-          'div',
-          {
-            class: 'm0 p0 flex-(~ justify-center items-center box-border)',
-            style: [
-              itemTranslateYs.value[index - 1],
-              {
-                'transition-duration': props.transitionDuration,
-                'transition-timing-function': props.transitionTimingFunction,
-                'transition-delay': props.transitionDelay,
-              },
-            ],
-          },
-          [ ...new Array<void>(10) ].map((_, index) => h(
-            'p',
-            { style: { height: props.itemHeightWithUnit } },
-            `${ props.reverseRollDirection ? 10 - index : index - 1 }`,
-          )),
-        ),
+        [
+          h(
+            'div',
+            {
+              class: 'm0 p0 flex-(~ justify-center items-center box-border)',
+              style: [
+                itemTranslateYs.value[index - 1],
+                {
+                  'transition-duration': props.transitionDuration,
+                  'transition-timing-function': props.transitionTimingFunction,
+                  'transition-delay': props.transitionDelay,
+                },
+              ],
+            },
+            [ ...new Array<void>(10) ].map((_, index) => h(
+              'p',
+              { style: { height: props.itemHeightWithUnit } },
+              `${ props.reverseRollDirection ? 10 - index : index - 1 }`,
+            )),
+          ),
+        ],
       )),
     )
   },

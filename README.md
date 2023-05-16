@@ -84,9 +84,17 @@ expose({ roll, reset: init })
 
 ## Development
 
-1. Edit Code.
-2. `pnpm build` (I haven't found a watch mode yet).
-3. `pnpm dev3` or `pnpm dev2`.
+1. Open `playgrounds/vue{2,3}/src/App.vue`.
+1. Edit and import local module.
+```xml
+<script setup lang="ts">
+// import NumberRoll from 'vue-number-roll'
+import NumberRoll from './../../../src/index'
+import './../../../dist/index.css'
+
+// ...
+```
+3. `nr dev`.
 
 > **Warning**
 > 

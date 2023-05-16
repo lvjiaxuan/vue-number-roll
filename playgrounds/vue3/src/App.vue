@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import NumberRoll from 'vue-number-roll'
+// import NumberRoll from 'vue-number-roll'
+import NumberRoll from './../../../src/index'
+import './../../../dist/index.css'
 import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
@@ -152,7 +154,7 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
       margin: 10px;
       background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
       font-size: 80px;
-      color: #fff;
+      @apply c-white;
       }
     </code>
 
@@ -184,13 +186,11 @@ code {
   line-height: 1.5;
 }
 .item-class {
-  border-radius: 8px;
-  width: 100px;
-  margin: 10px;
-  background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
-  font-size: 80px;
-  @apply c-white;
-  // color: #fff;
-  // height: 120px;
+  // border-radius: 8px;
+  // width: 100px;
+  // margin: 10px;
+  // background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
+  // font-size: 80px;
+  // @apply c-white;
 }
 </style>

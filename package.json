@@ -31,9 +31,9 @@
     "dist"
   ],
   "scripts": {
-    "u": "unocss src/h.ts -o=dist/index.css",
-    "dev2": "vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && nr dev",
-    "dev3": "vue-demi-switch 3 && cd playgrounds/vue3 && nr dev",
+    "u": "unocss src/index.ts -o=dist/index.css",
+    "dev2": "vue-demi-switch 3 && nr build && vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && ni --force && nr dev",
+    "dev3": "vue-demi-switch 3 && nr build && cd playgrounds/vue3 && ni --force && nr dev",
     "build": "nlx unbuild && (nr u & node ./scripts/injectCSS.mjs)",
     "prepublishOnly": "nr build",
     "lint": "eslint .",
