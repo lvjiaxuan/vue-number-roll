@@ -91,7 +91,7 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
         :item-height-with-unit="options.itemHeightWithUnit.value"
         :transition-delay="options.transitionDelay.value"
         :transition-duration="options.transitionDuration.value"
-        :transition-time-function="options.transitionTimingFunction.value"
+        :transition-timing-function="options.transitionTimingFunction.value"
         :immediate="options.immediate.value"
         :reverse-roll-direction="options.reverseRollDirection.value"
         item-class="item-class"
@@ -149,12 +149,12 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
 
     <code class="css-style">
       .item-class {
-      border-radius: 8px;
-      width: 100px;
-      margin: 10px;
+      border-radius: 10px;
+      width: 150px;
+      font-size: 8em;
+      color: #e5e5e5;
+      border: 1px solid #333;
       background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
-      font-size: 80px;
-      @apply c-white;
       }
     </code>
 
@@ -186,11 +186,11 @@ code {
   line-height: 1.5;
 }
 .item-class {
-  // border-radius: 8px;
-  // width: 100px;
-  // margin: 10px;
-  // background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
-  // font-size: 80px;
-  // @apply c-white;
+  border-radius: 10px;
+  width: 150px;
+  font-size: 8em;
+  color: #e5e5e5;
+  border: 1px solid #333;
+  background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
 }
 </style>

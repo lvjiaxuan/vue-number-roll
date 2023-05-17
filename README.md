@@ -37,12 +37,6 @@ props: {
     default: 0,
     validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
   },
-  itemHeightWithUnit: {
-    // The height style with unit of a number item.
-    // It is used to calculate the rolling things.
-    type: String,
-    required: true,
-  },
   reverseRollDirection: {
     // Reverse the direction of the rolling.
     type: Boolean,
@@ -73,7 +67,7 @@ props: {
     type: String,
     default: '0',
   },
-}
+},
 ```
 
 ## Expose

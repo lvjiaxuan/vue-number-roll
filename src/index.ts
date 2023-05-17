@@ -30,12 +30,6 @@ export default defineComponent({
       default: 0,
       validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
     },
-    itemHeightWithUnit: {
-      // The height style with unit of a number item.
-      // It is used to calculate the rolling things.
-      type: String,
-      required: true,
-    },
     reverseRollDirection: {
       // Reverse the direction of the rolling.
       type: Boolean,
@@ -88,24 +82,29 @@ export default defineComponent({
         .forEach((number, idx) => setItemTranslateY(idx, +number))
     }
 
-
     const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.totalLength, '0'))
     function roll() {
       itemTranslateYs.value.length = 0
       endNumberWithPadding.value.split('').forEach((number, idx) => setItemTranslateY(idx, +number))
     }
 
+    const vueNumberRollRef = ref<HTMLElement | null>(null)
+    const itemHeightNumber = computed(() =>
+      (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
 
-    const itemHeightUnit = computed(() => props.itemHeightWithUnit.replace(/\d/g, ''))
-    const itemHeightNumber = computed(() => +props.itemHeightWithUnit.replace(new RegExp(itemHeightUnit.value, 'gi'), ''))
     function setItemTranslateY(idx: number, number: number) {
-      itemTranslateYs.value[idx] = { transform: 'translateY(0)' }
+      itemTranslateYs.value[idx] = {
+        transform: `translateY(${
+          (props.reverseRollDirection
+            ? (number - 9) * itemHeightNumber.value
+            : -number * itemHeightNumber.value).toString() + 'px'
+        })`,
+      }
     }
 
-
     watch([
+      itemHeightNumber,
       () => props.start,
-      () => props.itemHeightWithUnit,
       () => props.totalLength,
       () => props.reverseRollDirection,
     ], init, { immediate: true })
@@ -118,20 +117,23 @@ export default defineComponent({
 
     return () => h(
       'ul',
-      { class: 'vue-number-roll-reset m0 p0 list-none overflow-hidden inline-flex' },
-      itemTranslateYs.value.map((item, index) => h(
+      {
+        class: 'vue-number-roll-reset m0 p0 list-none overflow-hidden inline-flex',
+        ref: el => vueNumberRollRef.value = el as HTMLElement,
+      },
+      itemTranslateYs.value.map((_, index) => h(
         'li',
         {
           class: `${ props.itemClass } transition-property-transform box-border mt0 mb0`,
-          style: { height: props.itemHeightWithUnit },
+          style: { height: itemHeightNumber.value.toString() + 'px' },
         },
         [
           h(
             'div',
             {
-              class: 'm0 p0 flex-(~ justify-center items-center box-border)',
+              class: 'flex-(~ justify-center items-center box-border)',
               style: [
-                itemTranslateYs.value[index - 1],
+                itemTranslateYs.value[index],
                 {
                   'transition-duration': props.transitionDuration,
                   'transition-timing-function': props.transitionTimingFunction,
@@ -140,9 +142,9 @@ export default defineComponent({
               ],
             },
             [ ...new Array<void>(10) ].map((_, index) => h(
-              'p',
-              { style: { height: props.itemHeightWithUnit } },
-              `${ props.reverseRollDirection ? 10 - index : index - 1 }`,
+              'div',
+              { class: 'lh-none' },
+              `${ props.reverseRollDirection ? 9 - index : index }`,
             )),
           ),
         ],
