@@ -79,7 +79,7 @@ expose({ roll, reset: init })
 ## Development
 
 1. Open `playgrounds/vue{2,3}/src/App.vue`.
-1. Edit and import local module.
+2. Edit and import local module.
 ```xml
 <script setup lang="ts">
 // import NumberRoll from 'vue-number-roll'

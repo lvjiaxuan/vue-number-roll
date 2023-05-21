@@ -5,6 +5,7 @@ import {
   onMounted,
   ref,
   watch,
+  isVue3
 } from 'vue-demi'
 
 export default defineComponent({
@@ -109,11 +110,12 @@ export default defineComponent({
       () => props.reverseRollDirection,
     ], init, { immediate: true })
 
-    // 不能 dom 渲染好的第一帧就重置 transform，我也不知道第二帧为什么不行
-    onMounted(() => props.immediate && window.requestAnimationFrame(() => window.requestAnimationFrame(roll)))
+    onMounted(() => props.immediate && roll())
 
     // These two methods were set at methods, working as an alias, for the lack of Intellisense.
     expose({ roll, reset: init })
+
+    console.log({ isVue3 })
 
     return () => h(
       'ul',

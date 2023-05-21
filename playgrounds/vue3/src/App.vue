@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// import NumberRoll from 'vue-number-roll'
-import NumberRoll from './../../../src/index'
-import './../../../dist/index.css'
+import NumberRoll from './../../../'
 import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
@@ -28,10 +26,6 @@ const options = reactive({
   },
   transitionTimingFunction: {
     value: 'ease-in-out',
-    type: 'text',
-  },
-  itemHeightWithUnit: {
-    value: '120px',
     type: 'text',
   },
   reverseRollDirection: {
@@ -88,13 +82,12 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
         :start="options.start.value"
         :end="options.end.value"
         :total-length="options.totalLength.value"
-        :item-height-with-unit="options.itemHeightWithUnit.value"
         :transition-delay="options.transitionDelay.value"
         :transition-duration="options.transitionDuration.value"
         :transition-timing-function="options.transitionTimingFunction.value"
         :immediate="options.immediate.value"
         :reverse-roll-direction="options.reverseRollDirection.value"
-        item-class="item-class"
+        item-class="rounded-3 w120px text-30 mx c-white bg-linear-gradient"
       />
     </section>
 
@@ -130,6 +123,14 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
           ) [&[type=checkbox]]:(m-0 w-4 h-4)"
         >
       </label>
+      <label
+        for="item-class"
+        inline-block
+        m="x3 y3"
+        flex="~ items-center"
+      >
+        item-class = "rounded-3 w120px text-30 mx c-white bg-linear-gradient"
+      </label>
     </section>
 
     <div flex="~ justify-between">
@@ -147,17 +148,6 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
       </button>
     </div>
 
-    <code class="css-style">
-      .item-class {
-      border-radius: 10px;
-      width: 150px;
-      font-size: 8em;
-      color: #e5e5e5;
-      border: 1px solid #333;
-      background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
-      }
-    </code>
-
     <p text-center>
       Vue version: {{ version }}
     </p>
@@ -173,24 +163,7 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
     hover:(c-rose bg-pink-200)
 }
 
-code {
-  margin-top: 25px;
-  display: block;
-  padding: 8px 15px;
-  background-color: #f6f8fa;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  overflow-x: auto;
-  color: #333;
-  font-size: 16px;
-  line-height: 1.5;
-}
-.item-class {
-  border-radius: 10px;
-  width: 150px;
-  font-size: 8em;
-  color: #e5e5e5;
-  border: 1px solid #333;
-  background: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
+.bg-linear-gradient {
+  background-image: linear-gradient(0deg, rgba(100, 184, 255, 1) 0%, rgba(0, 120, 255, 1) 50%, rgba(100, 184, 255, 1) 100%);
 }
 </style>

@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["playgrounds/**/*.config.ts"],
+  "include": ["**/*.config.ts"],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",

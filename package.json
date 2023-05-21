@@ -31,13 +31,12 @@
     "dist"
   ],
   "scripts": {
+    "dev3": "vue-demi-switch 3 && nr build && cd playgrounds/vue3 && nr dev",
+    "dev2": "vue-demi-switch 2 && nr build && cd playgrounds/vue2.7 && nr dev",
     "u": "unocss src/index.ts -o=dist/index.css",
-    "dev2": "vue-demi-switch 3 && nr build && vue-demi-switch 2 vue2 && cd playgrounds/vue2.7 && ni --force && nr dev",
-    "dev3": "vue-demi-switch 3 && nr build && cd playgrounds/vue3 && ni --force && nr dev",
-    "build": "nlx unbuild && (nr u & node ./scripts/injectCSS.mjs)",
-    "prepublishOnly": "nr build",
-    "lint": "eslint .",
-    "r": "lvr --no-push"
+    "stub": "unbuild --stub && (nr u & node ./scripts/injectCSS.mjs)",
+    "build": "unbuild && (nr u & node ./scripts/injectCSS.mjs)",
+    "prepublishOnly": "nr build"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.1",
@@ -49,22 +48,16 @@
     }
   },
   "dependencies": {
-    "@unocss/reset": "^0.51.13",
-    "vue-demi": "^0.14.1"
+    "vue-demi": "^0.14.5"
   },
   "devDependencies": {
-    "@lvjiaxuan/eslint-plugin": "^0.12.0",
     "@tsconfig/node18": "^2.0.1",
-    "@types/node": "^20.1.5",
-    "@unocss/cli": "^0.51.13",
-    "@vue/tsconfig": "^0.3.2",
-    "esbuild": "^0.17.19",
-    "eslint": "^8.40.0",
-    "sass": "^1.62.1",
-    "typescript": "^5.0.4",
-    "unocss": "^0.51.13",
+    "@types/node": "^20.2.1",
+    "@unocss/cli": "^0.52.0",
+    "@vue/tsconfig": "^0.4.0",
+    "unbuild": "^1.2.1",
+    "unocss": "^0.52.0",
     "unocss-transformer-attribute-values-group": "^0.2.2",
-    "vue": "^3.3.2",
-    "vue2": "npm:vue@2.7.14"
+    "vue": "^3.3.4"
   }
 }
