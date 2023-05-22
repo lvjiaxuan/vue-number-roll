@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import NumberRoll from './../../../'
+// import NumberRoll from 'vue-number-roll'
+import NumberRoll from './../../../src'
+import './../../../dist/index.css'
 import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()

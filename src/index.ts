@@ -2,11 +2,14 @@ import {
   computed,
   defineComponent,
   h,
+  isVue2,
   onMounted,
   ref,
   watch,
-  isVue3
 } from 'vue-demi'
+
+let rollForVue2: () => unknown
+let resetForVue2: () => unknown
 
 export default defineComponent({
   name: 'VueNumberRoll',
@@ -37,7 +40,7 @@ export default defineComponent({
       default: false,
     },
     immediate: {
-      // Set `true`8 to roll immediately on mounted.
+      // Set `true` to roll immediately on mounted.
       type: Boolean,
       default: false,
     },
@@ -65,10 +68,11 @@ export default defineComponent({
 
   methods: {
     roll() {
-      // ...
+      console.log(11)
+      // rollForVue2 && rollForVue2()
     },
     reset() {
-      // ...
+      resetForVue2 && resetForVue2()
     },
   },
 
@@ -115,13 +119,16 @@ export default defineComponent({
     // These two methods were set at methods, working as an alias, for the lack of Intellisense.
     expose({ roll, reset: init })
 
-    console.log({ isVue3 })
+    if (isVue2) {
+      rollForVue2 = roll
+      resetForVue2 = init
+    }
 
     return () => h(
       'ul',
       {
         class: 'vue-number-roll-reset m0 p0 list-none overflow-hidden inline-flex',
-        ref: el => vueNumberRollRef.value = el as HTMLElement,
+        ref: vueNumberRollRef,
       },
       itemTranslateYs.value.map((_, index) => h(
         'li',
