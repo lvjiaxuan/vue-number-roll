@@ -31,8 +31,8 @@
     "dist"
   ],
   "scripts": {
-    "build:dev3": "nr build && nr dev3",
-    "build:dev2": "nr build && nr dev2",
+    "build:dev3": "nr build && ni -C=playgrounds/vue3 --force && nr dev3",
+    "build:dev2": "nr build && ni -C=playgrounds/vue2.7 --force &&  nr dev2",
     "dev3": "nr -C=playgrounds/vue3 dev",
     "dev2": "nr -C=playgrounds/vue2.7 dev",
     "u": "unocss src/index.ts -o=dist/index.css",

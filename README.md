@@ -83,7 +83,7 @@ expose({ roll, reset: init })
 ```xml
 <script setup lang="ts">
 // import NumberRoll from 'vue-number-roll'
-import NumberRoll from './../../../src/index'
+import NumberRoll from './../../../src'
 import './../../../dist/index.css'
 
 // ...

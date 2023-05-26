@@ -68,8 +68,7 @@ export default defineComponent({
 
   methods: {
     roll() {
-      console.log(11)
-      // rollForVue2 && rollForVue2()
+      rollForVue2 && rollForVue2()
     },
     reset() {
       resetForVue2 && resetForVue2()
@@ -85,6 +84,8 @@ export default defineComponent({
         .padStart(+props.totalLength, '0')
         .split('')
         .forEach((number, idx) => setItemTranslateY(idx, +number))
+      // isColorTransparent.value = false
+      console.log(itemTranslateYs.value)
     }
 
     const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.totalLength, '0'))
@@ -93,6 +94,7 @@ export default defineComponent({
       endNumberWithPadding.value.split('').forEach((number, idx) => setItemTranslateY(idx, +number))
     }
 
+    const isColorTransparent = ref(true) // { color: 'transparent' }
     const vueNumberRollRef = ref<HTMLElement | null>(null)
     const itemHeightNumber = computed(() =>
       (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
@@ -152,7 +154,7 @@ export default defineComponent({
             },
             [ ...new Array<void>(10) ].map((_, index) => h(
               'div',
-              { class: 'lh-none' },
+              { class: [ 'lh-none' /* { 'c-transparent': isColorTransparent.value }*/ ] },
               `${ props.reverseRollDirection ? 9 - index : index }`,
             )),
           ),

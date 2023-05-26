@@ -14,5 +14,5 @@ export default defineConfig({
     }),
   ],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
-  optimizeDeps: { exclude: [ 'vue-demi', 'vue-number-roll' ] },
+  optimizeDeps: { exclude: [ 'vue-demi', 'vue-number-roll' ], force: true },
 })
