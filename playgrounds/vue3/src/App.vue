@@ -7,7 +7,7 @@ import { reactive, ref, version, watch } from 'vue'
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
 const options = reactive({
   start: {
-    value: 123,
+    value: 132,
     type: 'number',
   },
   end: {
@@ -19,7 +19,7 @@ const options = reactive({
     type: 'number',
   },
   transitionDelay: {
-    value: '0',
+    value: '0.5s',
     type: 'text',
   },
   transitionDuration: {

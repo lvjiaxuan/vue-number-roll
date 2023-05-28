@@ -84,8 +84,6 @@ export default defineComponent({
         .padStart(+props.totalLength, '0')
         .split('')
         .forEach((number, idx) => setItemTranslateY(idx, +number))
-      // isColorTransparent.value = false
-      console.log(itemTranslateYs.value)
     }
 
     const endNumberWithPadding = computed(() => props.end.toString().padStart(+props.totalLength, '0'))
@@ -94,7 +92,6 @@ export default defineComponent({
       endNumberWithPadding.value.split('').forEach((number, idx) => setItemTranslateY(idx, +number))
     }
 
-    const isColorTransparent = ref(true) // { color: 'transparent' }
     const vueNumberRollRef = ref<HTMLElement | null>(null)
     const itemHeightNumber = computed(() =>
       (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
@@ -109,14 +106,29 @@ export default defineComponent({
       }
     }
 
+    const isInitialized = ref(false)
+    const stop = watch(itemHeightNumber, _itemHeightNumber => {
+      if (_itemHeightNumber > 0) {
+        stop()
+        init()
+        // void nextTick(() => window.requestAnimationFrame(() => isInitialized.value = true))
+        setTimeout(() => isInitialized.value = true)
+      }
+    })
     watch([
-      itemHeightNumber,
       () => props.start,
       () => props.totalLength,
       () => props.reverseRollDirection,
     ], init, { immediate: true })
 
-    onMounted(() => props.immediate && roll())
+    onMounted(() => {
+      if (props.immediate) {
+        const stop = watch(isInitialized, _isInitialized => {
+          stop()
+          _isInitialized && roll()
+        })
+      }
+    })
 
     // These two methods were set at methods, working as an alias, for the lack of Intellisense.
     expose({ roll, reset: init })
@@ -135,7 +147,7 @@ export default defineComponent({
       itemTranslateYs.value.map((_, index) => h(
         'li',
         {
-          class: `${ props.itemClass } transition-property-transform box-border mt0 mb0`,
+          class: `${ props.itemClass } mt0 mb0`,
           style: { height: itemHeightNumber.value.toString() + 'px' },
         },
         [
@@ -145,11 +157,11 @@ export default defineComponent({
               class: 'flex-(~ justify-center items-center box-border)',
               style: [
                 itemTranslateYs.value[index],
-                {
+                isInitialized.value ? {
                   'transition-duration': props.transitionDuration,
                   'transition-timing-function': props.transitionTimingFunction,
                   'transition-delay': props.transitionDelay,
-                },
+                } : {},
               ],
             },
             [ ...new Array<void>(10) ].map((_, index) => h(
