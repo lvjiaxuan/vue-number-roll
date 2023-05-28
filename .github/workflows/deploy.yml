@@ -46,8 +46,8 @@ jobs:
         run: |
           pnpm i @antfu/ni -g
           ni
-          nr i
           nr build
+          nr i
           nr -C=playgrounds/vue3 build
 
       - name: Upload artifact
