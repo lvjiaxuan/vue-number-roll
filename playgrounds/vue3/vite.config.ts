@@ -6,6 +6,7 @@ import { presetAttributify, presetUno, transformerDirectives, transformerVariant
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     UnoCSS({
