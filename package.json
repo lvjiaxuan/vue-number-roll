@@ -36,12 +36,12 @@
     "preview:dev3": "nr build && nr inject:pkg && ni -C=playgrounds/vue3 --force && nr -C=playgrounds/vue3 build && nr -C=playgrounds/vue3 preview",
     "preview:dev2": "nr build && nr inject:pkg && ni -C=playgrounds/vue2.7 --force && nr -C=playgrounds/vue2.7 build && nr -C=playgrounds/vue2.7 preview",
     "u": "unocss src/index.ts -o=dist/index.css",
+    "i": "ni -C=playgrounds/vue3 & ni -C=playgrounds/vue2.7",
     "build": "unbuild && nr u && nr inject:css",
     "inject:css": "node ./scripts/injectCSS.mjs",
     "inject:pkg": "node ./scripts/injectPkg.mjs",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
-    "prepare": "ni -C=playgrounds/vue3 & ni -C=playgrounds/vue2.7"
+    "prepublishOnly": "nr build"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.1",

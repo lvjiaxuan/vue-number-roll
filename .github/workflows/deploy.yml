@@ -42,13 +42,13 @@ jobs:
         with:
           version: 8
 
-      - run: pnpm i @antfu/ni -g
-
-      - name: Install dependencies
-        run: ni
-
-      - name: Build vue3
-        run: nr -C=playgrounds/vue3 build
+      - name: Run scripts 
+        run: |
+          pnpm i @antfu/ni -g
+          ni
+          nr i
+          nr build
+          nr -C=playgrounds/vue3 build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
