@@ -37,6 +37,7 @@
     "preview:dev2": "nr build && nr inject:pkg && ni -C=playgrounds/vue2.7 --force && nr -C=playgrounds/vue2.7 build && nr -C=playgrounds/vue2.7 preview",
     "u": "unocss src/index.ts -o=dist/index.css",
     "i": "ni -C=playgrounds/vue3 & ni -C=playgrounds/vue2.7",
+    "r": "lvr --pkg --main-pkg --no-push",
     "build:preview": "nr build && nr inject:pkg",
     "build": "unbuild && nr u && nr inject:css",
     "inject:css": "node ./scripts/injectCSS.mjs",
