@@ -1,6 +1,26 @@
 # Changelog
 
-Tag ranges `v1.0.0...v2.0.1` (3). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+Tag ranges `v1.0.0...v3.0.0` (4). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+
+## v3.0.0 <sub>(2023-05-28)</sub>
+[Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v2.0.1...v3.0.0)
+
+### &nbsp;&nbsp;&nbsp;✨ Enhancements
+
+- auto height &nbsp;-&nbsp; by @lvjiaxuan [<samp>(17ebe)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/17ebe16)
+- fuck vue2 &nbsp;-&nbsp; by @lvjiaxuan [<samp>(b3fe6)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/b3fe6c0)
+
+### &nbsp;&nbsp;&nbsp;🐛 Fixes
+
+- init logic &nbsp;-&nbsp; by @lvjiaxuan [<samp>(c2f80)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/c2f809a)
+- ci &nbsp;-&nbsp; by @lvjiaxuan [<samp>(a39cb)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/a39cb1a)
+- ci &nbsp;-&nbsp; by @lvjiaxuan [<samp>(2ad7c)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/2ad7c4f)
+- ci &nbsp;-&nbsp; by @lvjiaxuan [<samp>(75627)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/7562748)
+- base &nbsp;-&nbsp; by @lvjiaxuan [<samp>(508f3)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/508f34d)
+
+### &nbsp;&nbsp;&nbsp;📝 Documentation
+
+- update &nbsp;-&nbsp; by @lvjiaxuan [<samp>(2744c)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/2744c24)
 
 ## v2.0.1 <sub>(2023-05-06)</sub>
 [Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v2.0.0...v2.0.1)
