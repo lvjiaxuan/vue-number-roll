@@ -46,7 +46,7 @@ jobs:
         run: |
           pnpm i @antfu/ni -g
           ni
-          nr build
+          nr build:preview
           nr i
           nr -C=playgrounds/vue3 build
 
