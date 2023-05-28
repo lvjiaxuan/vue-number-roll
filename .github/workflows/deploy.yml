@@ -4,7 +4,8 @@ name: Deploy static content to Pages
 on:
   # 仅在推送到默认分支时运行。
   # push:
-  #   branches: ['vue-demi']
+  #   branches:
+  #     - vue-demi
 
   # 这个选项可以使你手动在 Action tab 页面触发工作流
   workflow_dispatch: {}
@@ -41,21 +42,20 @@ jobs:
         with:
           version: 8
 
+      - run: pnpm i @antfu/ni -g
+
       - name: Install dependencies
-        run: pnpm install
+        run: ni
 
-      - name: Build
-        run: pnpm build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Build vue3
+        run: nr -C=playgrounds/vue3 build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          path: ./dist
+          path: ./playgrounds/vue3/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2

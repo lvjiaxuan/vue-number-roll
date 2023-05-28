@@ -36,7 +36,7 @@
     "preview:dev3": "nr build && nr inject:pkg && ni -C=playgrounds/vue3 --force && nr -C=playgrounds/vue3 build && nr -C=playgrounds/vue3 preview",
     "preview:dev2": "nr build && nr inject:pkg && ni -C=playgrounds/vue2.7 --force && nr -C=playgrounds/vue2.7 build && nr -C=playgrounds/vue2.7 preview",
     "u": "unocss src/index.ts -o=dist/index.css",
-    "build": "unbuild && (nr u & nr inject:css)",
+    "build": "unbuild && nr u && nr inject:css",
     "inject:css": "node ./scripts/injectCSS.mjs",
     "inject:pkg": "node ./scripts/injectPkg.mjs",
     "lint": "eslint .",
