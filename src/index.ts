@@ -5,11 +5,12 @@ import {
   isVue2,
   onMounted,
   ref,
+  set,
   watch,
 } from 'vue-demi'
 
-let rollForVue2: () => unknown
-let resetForVue2: () => unknown
+let rollInVue2: () => unknown
+let resetInVue2: () => unknown
 
 export default defineComponent({
   name: 'VueNumberRoll',
@@ -68,10 +69,10 @@ export default defineComponent({
 
   methods: {
     roll() {
-      rollForVue2 && rollForVue2()
+      rollInVue2 && rollInVue2()
     },
     reset() {
-      resetForVue2 && resetForVue2()
+      resetInVue2 && resetInVue2()
     },
   },
 
@@ -97,12 +98,22 @@ export default defineComponent({
       (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
 
     function setItemTranslateY(idx: number, number: number) {
-      itemTranslateYs.value[idx] = {
-        transform: `translateY(${
-          (props.reverseRollDirection
-            ? (number - 9) * itemHeightNumber.value
-            : -number * itemHeightNumber.value).toString() + 'px'
-        })`,
+      if (!isVue2) {
+        set(itemTranslateYs.value, idx, {
+          transform: `translateY(${
+            (props.reverseRollDirection
+              ? (number - 9) * itemHeightNumber.value
+              : -number * itemHeightNumber.value).toString() + 'px'
+          })`,
+        })
+      } else {
+        itemTranslateYs.value[idx] = {
+          transform: `translateY(${
+            (props.reverseRollDirection
+              ? (number - 9) * itemHeightNumber.value
+              : -number * itemHeightNumber.value).toString() + 'px'
+          })`,
+        }
       }
     }
 
@@ -134,8 +145,8 @@ export default defineComponent({
     expose({ roll, reset: init })
 
     if (isVue2) {
-      rollForVue2 = roll
-      resetForVue2 = init
+      rollInVue2 = roll
+      resetInVue2 = init
     }
 
     return () => h(
