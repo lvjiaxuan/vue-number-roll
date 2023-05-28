@@ -76,10 +76,10 @@ props: {
 expose({ roll, reset: init })
 ```
 
-## Development
+## Development in Vue 3
 
-1. Open `playgrounds/vue{2,3}/src/App.vue`.
-2. Edit and import local module.
+1. Open `playgrounds/vue3/src/App.vue`.
+2. Edit:
 ```xml
 <script setup lang="ts">
 // import NumberRoll from 'vue-number-roll'
@@ -88,7 +88,9 @@ import './../../../dist/index.css'
 
 // ...
 ```
-3. `nr dev`.
+3. `nr dev3` on root.
+
+## Preview vue 2/3
 
 > **Warning**
 > 

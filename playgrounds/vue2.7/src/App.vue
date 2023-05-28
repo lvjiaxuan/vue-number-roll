@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import NumberRoll from 'vue-number-roll'
+// import NumberRoll from './../../../src'
+// import './../../../dist/index.css'
 import { reactive, ref, version, watch } from 'vue'
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
@@ -17,7 +19,7 @@ const options = reactive({
     type: 'number',
   },
   transitionDelay: {
-    value: '0',
+    value: '0.5s',
     type: 'text',
   },
   transitionDuration: {
@@ -44,12 +46,6 @@ watch(
 )
 
 options.immediate.value = sessionStorage.getItem('immediate') === 'true'
-
-const roll = () => {
-  console.log(11, numberRollRef.value?.roll)
-  numberRollRef.value?.roll()
-}
-const reset = () => numberRollRef.value?.reset()
 </script>
 
 <template>
@@ -142,13 +138,13 @@ const reset = () => numberRollRef.value?.reset()
     <div flex="~ justify-between">
       <button
         class="btn"
-        @click="roll"
+        @click="() => numberRollRef?.roll()"
       >
         Let's roll
       </button>
       <button
         class="btn"
-        @click="reset"
+        @click="() => numberRollRef?.reset()"
       >
         Reset
       </button>

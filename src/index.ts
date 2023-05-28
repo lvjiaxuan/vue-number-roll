@@ -98,7 +98,7 @@ export default defineComponent({
       (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
 
     function setItemTranslateY(idx: number, number: number) {
-      if (!isVue2) {
+      if (isVue2) {
         set(itemTranslateYs.value, idx, {
           transform: `translateY(${
             (props.reverseRollDirection
