@@ -43,7 +43,7 @@ props: {
     default: false,
   },
   immediate: {
-    // Set `true`8 to roll immediately on mounted.
+    // Set `true` to roll immediately on mounted.
     type: Boolean,
     default: false,
   },
