@@ -90,7 +90,10 @@ import './../../../dist/index.css'
 ```
 3. `nr dev3` on root.
 
-## Preview vue 2/3
+### Preview vue 2/3
+
+- `pnpm preview:vue3`
+- `pnpm preview:vue2`
 
 > **Warning**
 > 
