@@ -4,7 +4,9 @@
 ![](https://img.shields.io/badge/supports-vue%202%2F3-brightgreen)
 [![](https://img.shields.io/npm/dependency-version/vue-number-roll/vue-demi)](https://github.com/vueuse/vue-demi)
 
-[Demo](https://lvjiaxuan.github.io/vue-number-roll/index.html)
+[Vue3 Demo](https://lvjiaxuan.github.io/vue-number-roll)
+
+[Vue2 Demo](https://lvjiaxuan.github.io/vue-number-roll/vue2)
 
 ## Usage
 
