@@ -5,7 +5,7 @@ import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
-  base: './vue2',
+  base: '/vue-number-roll/vue2/',
   plugins: [
     vue(),
     UnoCSS({
