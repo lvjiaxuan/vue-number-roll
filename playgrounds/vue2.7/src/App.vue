@@ -153,6 +153,18 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
     <p text-center>
       Vue version: {{ version }}
     </p>
+
+    <p text-center>
+      <a
+        href="https://lvjiaxuan.github.io/vue-number-roll"
+        target="_blank"
+        rel="noopener noreferrer"
+        decoration-none
+        italic
+      >
+        vue3 version
+      </a>
+    </p>
   </main>
 </template>
 
