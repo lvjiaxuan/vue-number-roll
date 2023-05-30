@@ -42,19 +42,19 @@ jobs:
         with:
           version: 8
 
-      - name: Run scripts 
+      - name: Run scripts
         run: |
           pnpm i @antfu/ni -g
           ni
           nr build:preview
           nr i
-          nr -C=playgrounds/vue3 build
+          nr build:deploy
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          path: ./playgrounds/vue3/dist
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
