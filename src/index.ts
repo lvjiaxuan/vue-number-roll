@@ -152,7 +152,7 @@ export default defineComponent({
     return () => h(
       'ul',
       {
-        class: 'vue-number-roll-reset m0 p0 list-none overflow-hidden inline-flex',
+        class: 'm0 p0 list-none overflow-hidden inline-flex',
         ref: vueNumberRollRef,
       },
       itemTranslateYs.value.map((_, index) => h(
