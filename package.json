@@ -67,8 +67,6 @@
     "eslint": "^8.41.0",
     "execa": "^7.1.1",
     "unbuild": "^1.2.1",
-    "unocss": "^0.52.4",
-    "unocss-transformer-attribute-values-group": "^0.2.2",
     "vue": "^3.3.4"
   }
 }
