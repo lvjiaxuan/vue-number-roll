@@ -1,6 +1,20 @@
 # Changelog
 
-Tag ranges `v1.0.0...v3.0.0` (4). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+Tag ranges `v1.0.0...v3.1.0` (5). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+
+## v3.1.0 <sub>(2023-06-08)</sub>
+[Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v3.0.0...v3.1.0)
+
+### &nbsp;&nbsp;&nbsp;✨ Enhancements
+
+- add vue2 pages &nbsp;-&nbsp; by @lvjiaxuan [<samp>(393c9)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/393c98b)
+- add link on pages &nbsp;-&nbsp; by @lvjiaxuan [<samp>(a22ed)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/a22edc5)
+
+### &nbsp;&nbsp;&nbsp;🐛 Fixes
+
+- base config &nbsp;-&nbsp; by @lvjiaxuan [<samp>(f4a94)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/f4a94b8)
+- base url &nbsp;-&nbsp; by @lvjiaxuan [<samp>(4b1b6)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/4b1b62f)
+- `getBoundingClientRect()` is better &nbsp;-&nbsp; by @lvjiaxuan [<samp>(c4cd4)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/c4cd443)
 
 ## v3.0.0 <sub>(2023-05-28)</sub>
 [Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v2.0.1...v3.0.0)
