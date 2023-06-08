@@ -95,7 +95,7 @@ export default defineComponent({
 
     const vueNumberRollRef = ref<HTMLElement | null>(null)
     const itemHeightNumber = computed(() =>
-      (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.offsetHeight ?? 0)
+      (vueNumberRollRef.value?.children[0]?.children[0]?.children[0] as HTMLElement)?.getBoundingClientRect().height ?? 0)
 
     function setItemTranslateY(idx: number, number: number) {
       if (isVue2) {
