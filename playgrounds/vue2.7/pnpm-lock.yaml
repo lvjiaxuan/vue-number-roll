@@ -23,14 +23,14 @@ devDependencies:
     specifier: ^3.3.4
     version: 3.3.4
   sass:
-    specifier: ^1.63.2
-    version: 1.63.2
+    specifier: ^1.63.3
+    version: 1.63.3
   unocss:
     specifier: ^0.53.1
     version: 0.53.1(postcss@8.4.23)(vite@4.3.9)
   vite:
     specifier: ^4.3.9
-    version: 4.3.9(sass@1.63.2)
+    version: 4.3.9(sass@1.63.3)
   vue-demi:
     specifier: ^0.14.5
     version: 0.14.5(vue@2.7.14)
@@ -558,7 +558,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.30.0
-      vite: 4.3.9(sass@1.63.2)
+      vite: 4.3.9(sass@1.63.3)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -570,7 +570,7 @@ packages:
       vite: ^3.0.0 || ^4.0.0
       vue: ^2.7.0-0
     dependencies:
-      vite: 4.3.9(sass@1.63.2)
+      vite: 4.3.9(sass@1.63.3)
       vue: 2.7.14
     dev: true
 
@@ -1155,8 +1155,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /sass@1.63.2:
-    resolution: {integrity: sha512-u56TU0AIFqMtauKl/OJ1AeFsXqRHkgO7nCWmHaDwfxDo9GUMSqBA4NEh6GMuh1CYVM7zuROYtZrHzPc2ixK+ww==}
+  /sass@1.63.3:
+    resolution: {integrity: sha512-ySdXN+DVpfwq49jG1+hmtDslYqpS7SkOR5GpF6o2bmb1RL/xS+wvPmegMvMywyfsmAV6p7TgwXYGrCZIFFbAHg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -1281,7 +1281,7 @@ packages:
       - vite
     dev: true
 
-  /vite@4.3.9(sass@1.63.2):
+  /vite@4.3.9(sass@1.63.3):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -1309,7 +1309,7 @@ packages:
       esbuild: 0.17.19
       postcss: 8.4.23
       rollup: 3.22.0
-      sass: 1.63.2
+      sass: 1.63.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
