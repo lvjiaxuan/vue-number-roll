@@ -1,9 +1,9 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["**/*.config.ts"],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
     "types": ["node"]
-  }
+  },
+  "include": ["**/*.config.ts"]
 }

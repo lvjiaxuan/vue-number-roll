@@ -1,2 +1,5 @@
-import lvjiaxuan from '@lvjiaxuan/eslint-plugin/flat'
-export default lvjiaxuan.configs.recommended
+import lv from '@lvjiaxuan/eslint-config'
+
+export default lv({
+  oxlint: true,
+})

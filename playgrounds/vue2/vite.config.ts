@@ -9,10 +9,10 @@ export default defineConfig({
   plugins: [
     vue(),
     UnoCSS({
-      presets: [ presetAttributify(), presetUno() ],
-      transformers: [ transformerVariantGroup(), transformerDirectives() ],
+      presets: [presetAttributify(), presetUno()],
+      transformers: [transformerVariantGroup(), transformerDirectives()],
     }),
   ],
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
-  optimizeDeps: { exclude: [ 'vue-demi', 'vue-number-roll' ], force: true },
+  optimizeDeps: { exclude: ['vue-demi', 'vue-number-roll'], force: true },
 })

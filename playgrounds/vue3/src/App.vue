@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import NumberRoll from 'vue-number-roll'
-// import NumberRoll from './../../../src'
-// import './../../../dist/index.css'
-import { reactive, ref, version, watch } from 'vue'
+import { reactive, ref, version, watch, defineAsyncComponent  } from 'vue'
+
+
+const NumberRoll = defineAsyncComponent(() => {
+  if(import.meta.env.DEV) {
+    console.log('hi')
+    import('./../../../dist/index.css')
+    return import('./../../../src')
+  } else {
+    return import('vue-number-roll')
+  }
+})
 
 const numberRollRef = ref<InstanceType<typeof NumberRoll>>()
 const options = reactive({

@@ -20,8 +20,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -31,25 +31,24 @@
     "dist"
   ],
   "scripts": {
-    "dev3": "run-p dev:*",
-    "dev:3": "nr -C=playgrounds/vue3 dev",
-    "dev:u": "nr u --watch",
-    "preview:dev3": "nr build:preview && ni -C=playgrounds/vue3 --force && nr -C=playgrounds/vue3 build && nr -C=playgrounds/vue3 preview",
-    "preview:dev2": "nr build:preview && ni -C=playgrounds/vue2.7 --force && nr -C=playgrounds/vue2.7 build && nr -C=playgrounds/vue2.7 preview",
+    "dev": "concurrently \"nr -C=playgrounds/vue3 dev\" \"nr u --watch\"",
+    "build": "unbuild && nr u && nr inject:css",
+    "preview:vue3": "nr -C=playgrounds/vue3 preview",
+    "preview:vue2": "nr -C=playgrounds/vue2 preview",
     "u": "unocss src/index.ts -o=dist/index.css",
-    "i": "ni & (nr build:preview && ni -C=playgrounds/vue3 --force & ni -C=playgrounds/vue2.7 --force)",
     "r": "lvr --pkg --main-pkg --no-push",
     "build:deploy": "node ./scripts/buildDeploy.mjs",
-    "build:preview": "nr build && nr inject:pkg",
+    "build:pkg": "nr build && nr inject:pkg",
     "build:publish": "nr build",
-    "build": "unbuild && nr u && nr inject:css",
     "inject:css": "node ./scripts/injectCSS.mjs",
     "inject:pkg": "node ./scripts/injectPkg.mjs",
-    "lint": "eslint .",
-    "prepublishOnly": "nr build"
+    "lint": "npx oxlint . && eslint .",
+    "lint:fix": "npx oxlint . --fix && eslint . --fix",
+    "prepublishOnly": "nr build",
+    "prepare": "nr build:pkg && concurrently \"ni -C=playgrounds/vue3\" \"ni -C=playgrounds/vue2\""
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.7.1",
+    "@vue/composition-api": "^1.7.2",
     "vue": "^2.0.0 || >=3.0.0"
   },
   "peerDependenciesMeta": {
@@ -58,18 +57,19 @@
     }
   },
   "dependencies": {
-    "vue-demi": "^0.14.5"
+    "vue-demi": "^0.14.7"
   },
   "devDependencies": {
-    "@lvjiaxuan/eslint-plugin": "^0.15.0",
-    "@tsconfig/node18": "^2.0.1",
-    "@types/node": "^20.3.0",
-    "@unocss/cli": "^0.53.1",
-    "@vue/tsconfig": "^0.4.0",
-    "eslint": "^8.42.0",
-    "execa": "^7.1.1",
-    "npm-run-all": "^4.1.5",
-    "unbuild": "^1.2.1",
-    "vue": "^3.3.4"
+    "@lvjiaxuan/eslint-config": "^1.8.2",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/node": "^20.11.19",
+    "@unocss/cli": "^0.58.5",
+    "@vue/tsconfig": "^0.5.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "execa": "^8.0.1",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0",
+    "vue": "^3.4.19"
   }
 }

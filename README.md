@@ -4,13 +4,12 @@
 ![](https://img.shields.io/badge/supports-vue%202%2F3-brightgreen)
 [![](https://img.shields.io/npm/dependency-version/vue-number-roll/vue-demi)](https://github.com/vueuse/vue-demi)
 
-[Vue3 Demo](https://lvjiaxuan.github.io/vue-number-roll)
+[Vue3 Preview](https://lvjiaxuan.github.io/vue-number-roll).
 
-[Vue2 Demo](https://lvjiaxuan.github.io/vue-number-roll/vue2)
+[Vue2 Preview](https://lvjiaxuan.github.io/vue-number-roll/vue2).
 
-## Usage
+## Install
 
-Install
 ```sh
 npm i vue-number-roll
 ```
@@ -74,29 +73,19 @@ props: {
 
 ## Expose
 
+<!-- eslint-skip -->
 ```ts
 expose({ roll, reset: init })
 ```
 
-## Development in Vue 3
+## Development
 
-1. Open `playgrounds/vue3/src/App.vue`.
-2. Edit:
-```xml
-<script setup lang="ts">
-// import NumberRoll from 'vue-number-roll'
-import NumberRoll from './../../../src'
-import './../../../dist/index.css'
+Run `nr dev`.
 
-// ...
-```
-3. `nr dev3` on root.
+> [!WARNING]
+> Do not modify the dev dir to vue2's, I can't figure it out for now.
 
 ### Preview vue 2/3
 
-- `pnpm preview:vue3`
-- `pnpm preview:vue2`
-
-> **Warning**
-> 
-> I have no more edge cases consideration, so use at your discretion. And PR welcome.
+- `pnpm run preview:vue3`
+- `pnpm run preview:vue2`

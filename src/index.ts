@@ -9,8 +9,11 @@ import {
   watch,
 } from 'vue-demi'
 
-let rollInVue2: () => unknown
-let resetInVue2: () => unknown
+// eslint-disable-next-line no-console
+import.meta.env.DEV && console.log(`VueNumberRoll runs on ${isVue2 ? 'vue2' : 'vue3'}`)
+
+let rollOnVue2: () => unknown
+let resetOnVue2: () => unknown
 
 export default defineComponent({
   name: 'VueNumberRoll',
@@ -18,20 +21,20 @@ export default defineComponent({
   props: {
     start: {
       // The start number.
-      type: [ Number, String ],
+      type: [Number, String],
       default: 0,
       validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
     },
     end: {
       // The end number.
-      type: [ Number, String ],
+      type: [Number, String],
       default: 0,
       validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
     },
     totalLength: {
       // The total length of number, padding start with `0`.
       // It would be ignored, if it is less than the start number and the end number
-      type: [ Number, String ],
+      type: [Number, String],
       default: 0,
       validator: (value: number | string) => Number.isInteger(+value) && +value >= 0,
     },
@@ -69,10 +72,10 @@ export default defineComponent({
 
   methods: {
     roll() {
-      rollInVue2 && rollInVue2()
+      rollOnVue2 && rollOnVue2()
     },
     reset() {
-      resetInVue2 && resetInVue2()
+      resetOnVue2 && resetOnVue2()
     },
   },
 
@@ -101,24 +104,25 @@ export default defineComponent({
       if (isVue2) {
         set(itemTranslateYs.value, idx, {
           transform: `translateY(${
-            (props.reverseRollDirection
+            `${(props.reverseRollDirection
               ? (number - 9) * itemHeightNumber.value
-              : -number * itemHeightNumber.value).toString() + 'px'
+              : -number * itemHeightNumber.value).toString()}px`
           })`,
         })
-      } else {
+      }
+      else {
         itemTranslateYs.value[idx] = {
           transform: `translateY(${
-            (props.reverseRollDirection
+            `${(props.reverseRollDirection
               ? (number - 9) * itemHeightNumber.value
-              : -number * itemHeightNumber.value).toString() + 'px'
+              : -number * itemHeightNumber.value).toString()}px`
           })`,
         }
       }
     }
 
     const isInitialized = ref(false)
-    const stop = watch(itemHeightNumber, _itemHeightNumber => {
+    const stop = watch(itemHeightNumber, (_itemHeightNumber) => {
       if (_itemHeightNumber > 0) {
         stop()
         init()
@@ -134,7 +138,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (props.immediate) {
-        const stop = watch(isInitialized, _isInitialized => {
+        const stop = watch(isInitialized, (_isInitialized) => {
           stop()
           _isInitialized && roll()
         })
@@ -144,10 +148,8 @@ export default defineComponent({
     // These two methods were set at methods, working as an alias, for the lack of Intellisense.
     expose({ roll, reset: init })
 
-    if (isVue2) {
-      rollInVue2 = roll
-      resetInVue2 = init
-    }
+    rollOnVue2 = roll
+    resetOnVue2 = init
 
     return () => h(
       'ul',
@@ -158,8 +160,8 @@ export default defineComponent({
       itemTranslateYs.value.map((_, index) => h(
         'li',
         {
-          class: `${ props.itemClass } mt0 mb0`,
-          style: { height: itemHeightNumber.value.toString() + 'px' },
+          class: `${props.itemClass} mt0 mb0`,
+          style: { height: `${itemHeightNumber.value.toString()}px` },
         },
         [
           h(
@@ -168,17 +170,19 @@ export default defineComponent({
               class: 'flex-(~ justify-center items-center box-border)',
               style: [
                 itemTranslateYs.value[index],
-                isInitialized.value ? {
-                  'transition-duration': props.transitionDuration,
-                  'transition-timing-function': props.transitionTimingFunction,
-                  'transition-delay': props.transitionDelay,
-                } : {},
+                isInitialized.value
+                  ? {
+                      'transition-duration': props.transitionDuration,
+                      'transition-timing-function': props.transitionTimingFunction,
+                      'transition-delay': props.transitionDelay,
+                    }
+                  : {},
               ],
             },
-            [ ...new Array<void>(10) ].map((_, index) => h(
+            Array.from({ length: 10 }).map((_, index) => h(
               'div',
-              { class: [ 'lh-none' /* { 'c-transparent': isColorTransparent.value }*/ ] },
-              `${ props.reverseRollDirection ? 9 - index : index }`,
+              { class: ['lh-none'] },
+              `${props.reverseRollDirection ? 9 - index : index}`,
             )),
           ),
         ],
