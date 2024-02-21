@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@lvjiaxuan/eslint-config": "^1.8.2",
-    "@tsconfig/node18": "^18.2.2",
+    "@tsconfig/node20": "^20.1.2",
     "@types/node": "^20.11.19",
     "@unocss/cli": "^0.58.5",
     "@vue/tsconfig": "^0.5.1",
