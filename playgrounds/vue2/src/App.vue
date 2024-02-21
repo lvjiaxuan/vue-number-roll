@@ -77,7 +77,7 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
       text-center
       mb5
     >
-      <number-roll
+      <NumberRoll
         ref="numberRollRef"
         :start="options.start.value"
         :end="options.end.value"

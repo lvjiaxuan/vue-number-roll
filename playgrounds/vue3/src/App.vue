@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { reactive, ref, version, watch, defineAsyncComponent  } from 'vue'
-
+import { defineAsyncComponent, reactive, ref, version, watch } from 'vue'
 
 const NumberRoll = defineAsyncComponent(() => {
-  if(import.meta.env.DEV) {
-    console.log('hi')
+  if (import.meta.env.DEV) {
     import('./../../../dist/index.css')
     return import('./../../../src')
-  } else {
+  }
+  else {
     return import('vue-number-roll')
   }
 })
@@ -87,7 +86,7 @@ options.immediate.value = sessionStorage.getItem('immediate') === 'true'
       text-center
       mb5
     >
-      <number-roll
+      <NumberRoll
         ref="numberRollRef"
         :start="options.start.value"
         :end="options.end.value"
