@@ -1,10 +1,25 @@
 import fsp from 'node:fs/promises'
+import process from 'node:process'
 import { $ } from 'execa'
 
-await Promise.all([
-  $`nr -C=playgrounds/vue3 build`,
-  $`nr -C=playgrounds/vue2 build`,
-])
+async function main() {
+  await Promise.all([
+    $`nr -C=playgrounds/vue3 build`,
+    $`nr -C=playgrounds/vue2 build`,
+  ])
 
-await fsp.cp('./playgrounds/vue3/dist', './dist', { recursive: true })
-await fsp.cp('./playgrounds/vue2/dist', './dist/vue2', { recursive: true })
+  await Promise.all([
+    fsp.cp('./playgrounds/vue3/dist', './dist', { recursive: true }),
+    fsp.cp('./playgrounds/vue2/dist', './dist/vue2', { recursive: true }),
+  ])
+
+  process.exit(0)
+}
+
+try {
+  main()
+}
+catch (e) {
+  console.error(e)
+  process.exit(1)
+}
