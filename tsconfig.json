@@ -9,5 +9,5 @@
       "path": "./tsconfig.node.json"
     }
   ],
-  "include": ["playgrounds/**/*.ts", "playgrounds/**/*.vue", "src/**/*.ts"]
+  "include": ["playgrounds/**/*.ts", "playgrounds/**/*.vue", "src/**/*.ts", "playground/**/*.ts"]
 }
