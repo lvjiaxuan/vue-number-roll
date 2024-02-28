@@ -1,0 +1,10 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "noEmit": false
+  },
+  "include": ["**/*.ts", "**/*.vue"],
+  "exclude": ["**/*.config.ts"]
+}

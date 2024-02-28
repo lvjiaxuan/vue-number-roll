@@ -44,8 +44,7 @@
     "inject:pkg": "node ./scripts/injectPkg.mjs",
     "lint": "npx oxlint . && eslint .",
     "lint:fix": "npx oxlint . --fix && eslint . --fix",
-    "prepublishOnly": "nr build",
-    "prepare": "nr build:pkg && concurrently \"ni -C=playgrounds/vue3\" \"ni -C=playgrounds/vue2\""
+    "prepublishOnly": "nr build"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.7.2",

@@ -3,21 +3,12 @@ import Vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { presetUno, presetAttributify, transformerVariantGroup } from 'unocss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     Vue(),
-    UnoCSS({
-      presets: [
-        presetAttributify(),
-        presetUno()
-      ],
-      transformers: [
-        transformerVariantGroup()
-      ]
-    }),
+    UnoCSS(),
     Components({
       dirs: [
         'src/components',
@@ -27,6 +18,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
+        '@vueuse/core',
       ],
       dirs: [
         'src/composables',

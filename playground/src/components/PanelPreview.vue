@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <main>Preview</main>
+  <main class="hfull">Preview</main>
 </template>

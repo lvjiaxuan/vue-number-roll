@@ -1,13 +1,12 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.json",
-  "compilerOptions": {
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "baseUrl": "."
-  },
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.app.json"
     }
   ],
-  "include": ["playgrounds/**/*.ts", "playgrounds/**/*.vue", "src/**/*.ts", "playground/**/*.ts"]
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["**/*.config.ts"]
 }

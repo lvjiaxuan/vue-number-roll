@@ -3,7 +3,7 @@ import { Pane, Splitpanes } from 'splitpanes'
 </script>
 
 <template>
-  <Splitpanes class="m-1" h-screen w-screen>
+  <Splitpanes h-screen w-screen>
     <Pane>
       <PanelPreview />
     </Pane>
