@@ -1,6 +1,14 @@
 # Changelog
 
-Tag ranges `v1.0.0...v3.1.0` (5). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+Tag ranges `v1.0.0...vue-number-roll@3.1.1` (6). [All GitHub Releases](https://github.com/lvjiaxuan/vue-number-roll/releases).
+
+## vue-number-roll@3.1.1 <sub>(2024-02-29)</sub>
+[Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v3.1.0...vue-number-roll@3.1.1)
+
+### &nbsp;&nbsp;&nbsp;🐛 Fixes
+
+- dev3 script &nbsp;-&nbsp; by @lvjiaxuan [<samp>(94451)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/9445140)
+- variant group isnt working for now &nbsp;-&nbsp; by @lvjiaxuan [<samp>(aaa7a)</samp>](https://github.com/lvjiaxuan/vue-number-roll/commit/aaa7a13)
 
 ## v3.1.0 <sub>(2023-06-08)</sub>
 [Compare changes](https://github.com/lvjiaxuan/vue-number-roll/compare/v3.0.0...v3.1.0)
