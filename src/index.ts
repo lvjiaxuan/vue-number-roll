@@ -167,7 +167,7 @@ export default defineComponent({
           h(
             'div',
             {
-              class: 'flex-(~ justify-center items-center box-border)',
+              class: 'flex flex-justify-center flex-items-center box-border',
               style: [
                 itemTranslateYs.value[index],
                 isInitialized.value
