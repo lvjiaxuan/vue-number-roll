@@ -61,14 +61,14 @@
   },
   "devDependencies": {
     "@lvjiaxuan/eslint-config": "^1.9.1",
-    "@tsconfig/node20": "^20.1.2",
-    "@types/node": "^20.11.28",
+    "@tsconfig/node20": "^20.1.3",
+    "@types/node": "^20.11.30",
     "@unocss/cli": "^0.58.6",
     "@vue/tsconfig": "^0.5.1",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "execa": "^8.0.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.3",
     "unbuild": "^2.0.0",
     "vue": "^3.4.21"
   }
