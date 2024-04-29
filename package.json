@@ -66,10 +66,10 @@
     "@unocss/cli": "^0.59.4",
     "@vue/tsconfig": "^0.5.1",
     "concurrently": "^8.2.2",
-    "eslint": "^9.1.0",
+    "eslint": "^9.1.1",
     "execa": "^8.0.1",
     "typescript": "^5.4.5",
     "unbuild": "^2.0.0",
-    "vue": "^3.4.23"
+    "vue": "^3.4.25"
   }
 }
