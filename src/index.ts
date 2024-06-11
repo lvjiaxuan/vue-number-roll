@@ -154,20 +154,20 @@ export default defineComponent({
     return () => h(
       'ul',
       {
-        class: 'm0 p0 list-none overflow-hidden inline-flex',
+        class: ':uno: m0 p0 list-none overflow-hidden inline-flex',
         ref: vueNumberRollRef,
       },
       itemTranslateYs.value.map((_, index) => h(
         'li',
         {
-          class: `${props.itemClass} mt0 mb0`,
+          class: `:uno: ${props.itemClass} mt0 mb0`,
           style: { height: `${itemHeightNumber.value.toString()}px` },
         },
         [
           h(
             'div',
             {
-              class: 'flex flex-justify-center flex-items-center box-border',
+              class: ':uno: flex flex-justify-center flex-items-center box-border',
               style: [
                 itemTranslateYs.value[index],
                 isInitialized.value
